@@ -19,8 +19,37 @@ And that's precisely what I will be aiming for.
 - [x] Add basic code structure (HTML, CSS and JS)
 - [x] Add all images given to us by coaches
   - [ ] This can be changed later on
-- [ ] Do some research on the parallax effect
-- [ ] And some research on the multi-layered parallax effect
-- [ ] Big Goal #1: Create 1 layer of the parallax effect
+- [x] Do some research on the parallax effect
+- [x] And some research on the multi-layered parallax effect
+- [x] Big Goal #1: Get images for the Pokémon Game for the Parallax background
+  - [x] Grass
+  - [x] Clouds
+  - [x] Sea
+  - [x] Sky
+  - [x] Trees (from other Pokémon game)
+  - Flying Pokémon
+    - Might just add latios flying, and when it hits something it explodes (Spongebob Style)
+- [ ] Big Goal #2: Create 1 layer of the parallax effect
   - [ ] Think/plan out some smaller, attainable goals
-  - [ ] Make sure it's infinite
+  - [ ] Make sure it keeps looping
+  - Once that's done, add the others
+    - [ ] Saw a video that explained 
+
+## Lettuce Learn Canvas
+While doing my research on this assignment (asking questions to Google, a magic 8-ball and my mom who knows nothing about coding), I stumbled upon something called canvas.
+Then I found [an interesting video on YouTube](https://www.youtube.com/watch?v=Mg7ibYWhjPI) that delves more into this subject.
+I've never used canvas before, so I really want to try it out and learn in during this assignment.
+
+## Name of the game: Pokémon!!
+The very first Pokémon game I ever played was Pokémon Emerald.
+So I have a strong emotional connection to it.
+That's why I chose to create a platform game with a parallax effect using the sprites/art from that game.
+During the intro, there was a scene of the main characters riding their bikes with their Pokémon.
+I want to use this as background for the parallax effect, and maybe add some other stuff to enhance the parallax experience as well.
+
+![alt-text](resources/readme-images/pokemon-emerald.webp)
+
+I used a free, alternative version to split up all the elements of the image you that I just showed.
+It's called [photopea.com](https://www.photopea.com/) and it was a lifesaver!
+I do think I might have spent too much time on making it look good and not enough on actually programming, that is something I'm afraid of.
+But on the other hand, if it looks cool I can be more proud of it so it was 100% worth it to invest that time in the images.
