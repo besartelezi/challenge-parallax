@@ -13,17 +13,17 @@ let gameSpeed = 1;
 
 //adds new Images
 const backgroundLayer1 = new Image();
-backgroundLayer1.src = "./resources/game-images/01-sky.png";
+backgroundLayer1.src = "resources/game-images/01-sky.png";
 const backgroundLayer2 = new Image();
-backgroundLayer2.src = "./resources/game-images/02-sea.png";
+backgroundLayer2.src = "resources/game-images/02-sea.png";
 const backgroundLayer3 = new Image();
-backgroundLayer3.src = "./resources/game-images/03-lapras.png";
+backgroundLayer3.src = "resources/game-images/03-lapras.png";
 const backgroundLayer4 = new Image();
-backgroundLayer4.src = "./resources/game-images/04-clouds.png";
+backgroundLayer4.src = "resources/game-images/04-clouds.png";
 const backgroundLayer5 = new Image();
-backgroundLayer5.src = "./resources/game-images/05-trees.png";
+backgroundLayer5.src = "resources/game-images/05-trees.png";
 const backgroundLayer6 = new Image();
-backgroundLayer6.src = "./resources/game-images/06-grass.png";
+backgroundLayer6.src = "resources/game-images/06-grass.png";
 
 //creating a class so I don't have to write the code for all the different layers
 class ParallaxBackgroundLayer {
