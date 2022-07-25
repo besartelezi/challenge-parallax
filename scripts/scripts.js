@@ -9,8 +9,9 @@ const canvasContext = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 960;
 const CANVAS_HEIGHT = canvas.height = 600;
 
-let gameSpeed = 5;
+let gameSpeed = 1;
 
+//adds new Images
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = "../resources/game-images/01-sky.png";
 const backgroundLayer2 = new Image();
@@ -24,30 +25,71 @@ backgroundLayer5.src = "../resources/game-images/05-trees.png";
 const backgroundLayer6 = new Image();
 backgroundLayer6.src = "../resources/game-images/06-grass.png";
 
-let x = 0;
-let x2 = 1920
+//creating a class so I don't have to write the code for all the different layers
+class ParallaxBackgroundLayer {
+    constructor(image, speedModifier) {
+        this.x = 0;
+        this.y = 0;
+        this.width = 1920;
+        this.height = 600;
+        this.x2 = this.width;
+        this.image = image;
+        this.speedModifier = speedModifier;
+        this.speed = gameSpeed * this.speedModifier;
+    }
+    update() {
+        console.log("update works")
+
+        this.speed = gameSpeed * this.speedModifier
+        if (this.x <= -this.width){
+            //this is the formula needed to get rid of whitespace in between the looped images
+            //there will always be a gap equal to the gamespeed, and if the canvas_width isn't perfectly divisible by the gameSpeed, another gap will appear
+            //This way it won't matter what the gamespeed is, there won't be a gap in between the images in the canvas
+            this.x = this.width + this.x2 - this.speed
+            console.log("if 1 works in update")
+        }
+        if (this.x2 <= -this.width){
+            this.x2 = this.width + this.x - this.speed
+            console.log("if 2 works in update")
+
+        }
+        this.x = Math.floor(this.x - this.speed);
+        this.x2 = Math.floor(this.x2 - this.speed);
+    }
+
+    draw () {
+        //draws the images on the canva
+        canvasContext.drawImage(this.image, this.x, this.y, this.width, this.height)
+        canvasContext.drawImage(this.image, this.x2, this.y, this.width, this.height)
+    }
+}
+
+//creating all the layers in the parallax
+const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
+const layerSea = new ParallaxBackgroundLayer(backgroundLayer2, 0.5)
+const layerLapras = new ParallaxBackgroundLayer(backgroundLayer3, 1.5)
+const layerClouds = new ParallaxBackgroundLayer(backgroundLayer4, 2.5)
+const layerTrees = new ParallaxBackgroundLayer(backgroundLayer5, 3.5)
+const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 5)
+
 
 function animateBackground () {
+    //clears prior drawing on the canvas
     canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
-    canvasContext.drawImage(backgroundLayer6, x, 0);
-    canvasContext.drawImage(backgroundLayer6, x2, 0);
 
-    if (x < -1920) {
-        //this is the formula needed to get rid of whitespace in between the looped images
-        //there will always be a gap equal to the gamespeed, and if the canvas_width isn't perfectly divisible by the gameSpeed, another gap will appear
-        //This way it won't matter what the gamespeed is, there won't be a gap in between the images in the canvas
-        x = 1920 + x2 - gameSpeed;
-    }
-    else {
-        x-= gameSpeed;
-    }
-
-    if (x2 < -1920) {
-        x2 = 1920 +x - gameSpeed;
-    }
-    else {
-        x2 -= gameSpeed;
-    }
-    requestAnimationFrame(animateBackground)
+    //calls all the functions on all the layers
+    layerSky.update();
+    layerSky.draw();
+    layerSea.update();
+    layerSea.draw();
+    layerLapras.update();
+    layerLapras.draw();
+    layerClouds.update();
+    layerClouds.draw();
+    layerTrees.update();
+    layerTrees.draw();
+    layerGrass.update();
+    layerGrass.draw();
+    requestAnimationFrame( animateBackground)
 }
 animateBackground()
