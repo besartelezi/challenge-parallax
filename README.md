@@ -45,6 +45,28 @@ And that's precisely what I will be aiming for.
   - [x] Make sure it keeps looping
   - [x] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
     - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
+- [ ] Get artwork for Pokémon Game
+  - [ ] Get sprite images of Torchic, Mudkip, and Treecko
+    - [ ] If possible, get sprite gif of one of them running
+  - [ ] Get sprite images of other Pokémon that might appear as obstacles
+  - [ ] Get sprite images of fire attack, grass attack, and water attack
+- [ ] Add Pokémon on the parallax
+  - [ ] Add the Pokémon
+  - [ ] Let the Pokémon move up and down on key button press down
+- [ ] Add obstacles
+  - [ ] Create class Obstacles
+  - [ ] One of the properties should be 'type'
+    - [ ] According to type of the obstacle, different things happen to the Pokémon
+    - [ ] When Pokémon gets hit by obstacle, no matter the typing = (dead)
+- [ ] Add Attack functionality
+  - [ ] Spacebar = Pokémon Attack
+  - [ ] When Pokémon attack > obstacle Pokémon type = Obstacle removed
+  - [ ] When Pokémon attack <= obstacle Pokémon type = Obstacle still there
+- [ ] Add Switch Functionality
+  - [ ] Switch between the Pokémon
+    - [ ] Different buttons call different Pokémon
+    - [ ] A = Grass, Z = Fire and E = Water
+    - 
 
 
 ## Lettuce Learn Canvas
@@ -73,3 +95,19 @@ I feel that if I focus too much on the video and just mindlessly copy pasta of s
 That's why I'm forcing myself to comment as much of my Javascript code as possible in this assignment.
 The video itself explains everything very thoroughly and I'm definitely learning a lot from it.
 But still, just to be 100% entirely sure that I'm actually learning, commenting everything for my own sake is something that is necessary.
+
+## Time to Game
+Doritos Dust: Collected. Gaming Gear: Connected. Women: Respected. Oh yeah, It's gamer time!
+Now that I have finished the parallax effect on my page, it is (gamer) time to figure out what the game will be and what rules it will have.
+
+Here are a few suggestions:
+* You're playing as Latios, flying through the map. You need to dodge everything coming your way (other Pokémon, Pokéballs trying to catch you, Pokémon attacks)
+* You're playing as Torchic (I need to find a gif of pixel Torchic running for this).
+  * You can dodge Pokémon, you can use fire moves against grass Pokémon to defeat them, so they won't be an obstacle in your way anymore
+  * You can't get rid of water type Pokémon
+  * The longer the game is continuing on, the bigger the Pokémon will be that start appearing (wailord, kyogre,...)
+  * Make it possible to switch between Pokémon, so you can switch between the 3 starters
+    * So if you're playing as Torchic (fire type) and all of a sudden a Squirtle
+
+After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
+And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
