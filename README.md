@@ -37,7 +37,8 @@ And that's precisely what I will be aiming for.
 - [ ] Create parallax effect with Pokémon assets
   - [x] Add Canvas in HTML
   - [x] Style Canvas in CSS
-  - [ ] Start out by just looping/animating one part/one asset
+  - [x] Start out by just looping/animating one part/one asset
+    - [x] This asset needs to keep looping
   - [ ] Once one part of parallax is done, do the same for the other parts
   - [ ] When parallax effect works -> double check on github if it works properly!
   - [ ] ...
@@ -64,3 +65,11 @@ I used a free, alternative version to split up all the elements of the image you
 It's called [photopea.com](https://www.photopea.com/) and it was a lifesaver!
 I do think I might have spent too much time on making it look good and not enough on actually programming, that is something I'm afraid of.
 But on the other hand, if it looks cool I can be more proud of it so it was 100% worth it to invest that time in the images.
+
+## Youtube, a blessing and a curse
+The video I found helped me out **A LOT** on this assignment.
+It might've been working even a bit *too well*.
+I feel that if I focus too much on the video and just mindlessly copy pasta of someone on YouTube, I won't learn anything.
+That's why I'm forcing myself to comment as much of my Javascript code as possible in this assignment.
+The video itself explains everything very thoroughly and I'm definitely learning a lot from it.
+But still, just to be 100% entirely sure that I'm actually learning, commenting everything for my own sake is something that is necessary.
