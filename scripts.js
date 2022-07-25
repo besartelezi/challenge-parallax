@@ -38,8 +38,6 @@ class ParallaxBackgroundLayer {
         this.speed = gameSpeed * this.speedModifier;
     }
     update() {
-        console.log("update works")
-
         this.speed = gameSpeed * this.speedModifier
         if (this.x <= -this.width){
             //this is the formula needed to get rid of whitespace in between the looped images
@@ -56,9 +54,8 @@ class ParallaxBackgroundLayer {
         this.x = Math.floor(this.x - this.speed);
         this.x2 = Math.floor(this.x2 - this.speed);
     }
-
     draw () {
-        //draws the images on the canva
+        //draws the images on the canvas
         canvasContext.drawImage(this.image, this.x, this.y, this.width, this.height)
         canvasContext.drawImage(this.image, this.x2, this.y, this.width, this.height)
     }
@@ -66,11 +63,11 @@ class ParallaxBackgroundLayer {
 
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
-const layerSea = new ParallaxBackgroundLayer(backgroundLayer2, 0.5)
-const layerLapras = new ParallaxBackgroundLayer(backgroundLayer3, 1.5)
-const layerClouds = new ParallaxBackgroundLayer(backgroundLayer4, 2.5)
-const layerTrees = new ParallaxBackgroundLayer(backgroundLayer5, 3.5)
-const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 5)
+const layerSea = new ParallaxBackgroundLayer(backgroundLayer2, 1)
+const layerLapras = new ParallaxBackgroundLayer(backgroundLayer3, 2.5)
+const layerClouds = new ParallaxBackgroundLayer(backgroundLayer4, 0.5)
+const layerTrees = new ParallaxBackgroundLayer(backgroundLayer5, 4.5)
+const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 
 
 function animateBackground () {
