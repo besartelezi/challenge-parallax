@@ -1,5 +1,6 @@
 # Pokémon Emerald: The Platform Game
-
+If you want to play the game I made, [click here and Pokémon away my friend](https://besartelezi.github.io/challenge-parallax/).
+If you'd rather glue your eyes on to my README and inhale all possible information, then please stay on this page and read away my friend!
 
 ## Creating a ~~Paarthurnax~~ Parallax effect
 **In short**: I will be creating a platform/endless runner game.
@@ -34,16 +35,15 @@ And that's precisely what I will be aiming for.
   - Flying Pokémon
     - Might just add Latios flying, and when it hits something it explodes (Spongebob Style)
   - Once I start in canvas, I need to remember that the pixels of the images are 960 / 600
-- [ ] Create parallax effect with Pokémon assets
+- [x] Create parallax effect with Pokémon assets
   - [x] Add Canvas in HTML
   - [x] Style Canvas in CSS
   - [x] Start out by just looping/animating one part/one asset
     - [x] This asset needs to keep looping
-  - [ ] Once one part of parallax is done, do the same for the other parts
-  - [ ] When parallax effect works -> double check on github if it works properly!
-  - [ ] ...
-  - [ ] Make sure it keeps looping
-  - [ ] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
+  - [x] Once one part of parallax is done, do the same for the other parts
+  - [x] When parallax effect works -> double check on github if it works properly!
+  - [x] Make sure it keeps looping
+  - [x] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
     - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
 
 
