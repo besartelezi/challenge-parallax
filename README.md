@@ -1,4 +1,7 @@
-# Creating a ~~Paarthurnax~~ Parallax effect
+# Pokémon Emerald: The Platform Game
+
+
+## Creating a ~~Paarthurnax~~ Parallax effect
 **In short**: I will be creating a platform/endless runner game.
 And now in *not so short:*
 
@@ -21,6 +24,7 @@ And that's precisely what I will be aiming for.
   - [ ] This can be changed later on
 - [x] Do some research on the parallax effect
 - [x] And some research on the multi-layered parallax effect
+- [x] Add favicon
 - [x] Big Goal #1: Get images for the Pokémon Game for the Parallax background
   - [x] Grass
   - [x] Clouds
@@ -28,12 +32,19 @@ And that's precisely what I will be aiming for.
   - [x] Sky
   - [x] Trees (from other Pokémon game)
   - Flying Pokémon
-    - Might just add latios flying, and when it hits something it explodes (Spongebob Style)
-- [ ] Big Goal #2: Create 1 layer of the parallax effect
-  - [ ] Think/plan out some smaller, attainable goals
+    - Might just add Latios flying, and when it hits something it explodes (Spongebob Style)
+  - Once I start in canvas, I need to remember that the pixels of the images are 960 / 600
+- [ ] Create parallax effect with Pokémon assets
+  - [x] Add Canvas in HTML
+  - [x] Style Canvas in CSS
+  - [ ] Start out by just looping/animating one part/one asset
+  - [ ] Once one part of parallax is done, do the same for the other parts
+  - [ ] When parallax effect works -> double check on github if it works properly!
+  - [ ] ...
   - [ ] Make sure it keeps looping
-  - Once that's done, add the others
-    - [ ] Saw a video that explained 
+  - [ ] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
+    - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
+
 
 ## Lettuce Learn Canvas
 While doing my research on this assignment (asking questions to Google, a magic 8-ball and my mom who knows nothing about coding), I stumbled upon something called canvas.
