@@ -10,6 +10,11 @@ const CANVAS_WIDTH = canvas.width = 960;
 const CANVAS_HEIGHT = canvas.height = 600;
 
 let gameSpeed = 1;
+//interval between obstacles appearing
+//TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
+let obstacleInterval = 1500;
+
+
 
 //adds new Images
 const backgroundLayer1 = new Image();
@@ -40,6 +45,7 @@ const zigzagoonImage = new Image();
 zigzagoonImage.src = "resources/game-images/zigzagoon.png";
 
 //Pokémon typings
+//grass beats water, water beats fire, fire beats grass, and none of them beat normal
 const grass = "grass";
 const fire = "fire";
 const water = "water";
@@ -81,7 +87,7 @@ class ParallaxBackgroundLayer {
 
 class UserPokemon {
     //passing only elements that will change depending on the new UserPokemon I create in the constructor
-    constructor(image, type, width, height) {
+    constructor(name, image, type, width, height) {
         this.image = image;
         this.type = type;
         this.x = 20;
@@ -94,7 +100,7 @@ class UserPokemon {
 }
 
 class ObstaclePokemon {
-    constructor(img, type, width, height) {
+    constructor(name, img, type, width, height, speed) {
         this.img = img;
         this.type = type;
         this.width = width;
@@ -103,14 +109,14 @@ class ObstaclePokemon {
         this.x = 950;
         //picks a random y coordinate that's still inside of the canvas
         this.y = Math.random() * canvas.height;
+        this.speed = speed;
     }
     update() {
-        this.x--;
+        this.x -= this.speed;
     }
     draw () {
         //draws obstacle Pokémon on the canvas
-//TODO: find a way to create more obstacles
-        canvasContext.drawImage(currentObstacle.img ,currentObstacle.x, currentObstacle.y, currentObstacle.width, currentObstacle.height)
+        canvasContext.drawImage(this.img ,this.x, this.y, this.width, this.height)
     }
 }
 
@@ -120,17 +126,11 @@ function drawPokemon (img, pokemonX, pokemonY, pokemonWidth, pokemonHeight) {
 }
 
 //creates new UserPokemon
-const treecko = new UserPokemon(treeckoImage, grass, 98, 100);
-const torchic = new UserPokemon(torchicImage, fire, 67, 100);
-const mudkip = new UserPokemon(mudkipImage, water, 95, 100);
+const treecko = new UserPokemon("Treecko", treeckoImage, grass, 98, 100);
+const torchic = new UserPokemon("Torchic" , torchicImage, fire, 67, 100);
+const mudkip = new UserPokemon("Mudkip" , mudkipImage, water, 95, 100);
 //The current Pokémon the user has, this is a let variable since I want the user to be able to switch to different Pokemon
 let currentPokemon = torchic;
-
-//creates new ObstaclePokemon
-const ivysaur = new ObstaclePokemon(ivysaurImage, grass, 153, 150);
-const zigzagoon = new ObstaclePokemon(zigzagoonImage, normal, 136, 100);
-//The current obstacle
-let currentObstacle = zigzagoon;
 
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
@@ -144,10 +144,11 @@ const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, layerGrass]
 //array for pressed keys
 const keys = []
+//array of obstacle Pokémon
+const obstacleArray = [];
 
 window.addEventListener('keydown', (e) => {
     keys[e.key] = true;
-    console.log(keys)
 })
 window.addEventListener('keyup', (e) => {
     delete keys[e.key];
@@ -157,21 +158,30 @@ function animate () {
     //clears prior drawing on the canvas
     canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
     //call on the update and draw functions on each of the layers
-    layerArray.forEach(object => {
-        object.update();
-        object.draw();
+    layerArray.forEach(layer => {
+        layer.update();
+        layer.draw();
     })
     //draws current Pokémon
     //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
+    //TODO: if I find another way to switch between Pokémon, this piece of code might become obsolete
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
     //calls move pokemon function
     movePokemon();
-    currentObstacle.draw();
-    currentObstacle.update();
+    // currentObstacle.update();
+    // currentObstacle.draw();
+    obstacleArray.forEach(obstacle => {
+        obstacle.draw();
+        obstacle.update();
+    })
     requestAnimationFrame(animate);
 }
 
-animate()
+animate();
+setTimeout(() => {
+    generateObstacles();
+    console.log(obstacleArray)
+}, 0);
 
 //moving the user's Pokémon
 function movePokemon () {
@@ -182,4 +192,13 @@ function movePokemon () {
     if (keys["ArrowDown"] && currentPokemon.y < 500) {
         currentPokemon.y += currentPokemon.speed;
     }
+}
+function generateObstacles () {
+    if (Math.round(Math.random())) {
+        obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
+    }
+    else{
+        obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 2));
+    }
+    setTimeout(generateObstacles, obstacleInterval);
 }
