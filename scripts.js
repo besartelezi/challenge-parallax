@@ -14,8 +14,6 @@ let gameSpeed = 1;
 //TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
 let obstacleInterval = 1500;
 
-
-
 //adds new Images
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = "resources/game-images/01-sky.png";
@@ -43,6 +41,10 @@ const ivysaurImage = new Image();
 ivysaurImage.src = "resources/game-images/ivysaur.png";
 const zigzagoonImage = new Image();
 zigzagoonImage.src = "resources/game-images/zigzagoon.png";
+
+//adding images of attacks
+const fireAttackImage = new Image();
+fireAttackImage.src = "resources/game-images/fire-attack.png"
 
 //Pokémon typings
 //grass beats water, water beats fire, fire beats grass, and none of them beat normal
@@ -120,6 +122,24 @@ class ObstaclePokemon {
     }
 }
 
+class pokemonAttack {
+    constructor(img, type, width, height, speed) {
+        this.img = img;
+        this.type = type;
+        this.width = width;
+        this.height = height;
+        this.speed = speed;
+        this.x = currentPokemon.x + currentPokemon.width/2 + 10;
+        this.y = currentPokemon.y + currentPokemon.height/2 - 10;
+    }
+    update() {
+        this.x += this.speed;
+    }
+    draw() {
+        canvasContext.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+}
+
 //draws Pokémon on the canvas
 function drawPokemon (img, pokemonX, pokemonY, pokemonWidth, pokemonHeight) {
     canvasContext.drawImage(img, pokemonX, pokemonY, pokemonWidth, pokemonHeight)
@@ -146,6 +166,8 @@ const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, la
 const keys = []
 //array of obstacle Pokémon
 const obstacleArray = [];
+//array of Pokémon attacks
+const pokemonAttacksArray = [];
 
 window.addEventListener('keydown', (e) => {
     keys[e.key] = true;
@@ -153,11 +175,6 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('keyup', (e) => {
     delete keys[e.key];
 })
-
-
-
-
-
 
 function animate () {
     //clears prior drawing on the canvas
@@ -173,8 +190,6 @@ function animate () {
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
     //calls move pokemon function
     movePokemon();
-    // currentObstacle.update();
-    // currentObstacle.draw();
     obstacleArray.forEach((obstacle, index) => {
         obstacle.draw();
         obstacle.update();
@@ -185,6 +200,7 @@ function animate () {
             }, 0)
         }
         //detects collision between player and obstacles
+        //TODO: rework hitboxes
         if (currentPokemon.x < obstacle.x + obstacle.width &&
             currentPokemon.x + currentPokemon.width > obstacle.x &&
             currentPokemon.y < obstacle.y + obstacle.height &&
@@ -193,8 +209,10 @@ function animate () {
             alert('ya dead buddy');
             location.reload();
         }
-        else {
-        }
+    })
+    pokemonAttacksArray.forEach((attack, index) => {
+        attack.draw();
+        attack.update()
     })
     requestAnimationFrame(animate);
 }
@@ -214,8 +232,14 @@ function movePokemon () {
     if (keys["ArrowDown"] && currentPokemon.y < 500) {
         currentPokemon.y += currentPokemon.speed;
     }
+    //TODO: find spacebar key
+    if (keys["a"]) {
+        shootAttack();
+    }
 }
+
 function generateObstacles () {
+    //TODO: expand math random and add other Pokémon Obstacles
     if (Math.round(Math.random())) {
         obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
     }
@@ -224,3 +248,17 @@ function generateObstacles () {
     }
     setTimeout(generateObstacles, obstacleInterval);
 }
+
+function shootAttack () {
+    if (currentPokemon.type === fire) {
+        pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
+    }
+    if (currentPokemon.type === water) {
+        //TODO: add water attack
+    }
+    if (currentPokemon.type === grass) {
+        //TODO: add water attack
+    }
+}
+
+
