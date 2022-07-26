@@ -21,8 +21,7 @@ And that's precisely what I will be aiming for.
 
 ## To-Do List
 - [x] Add basic code structure (HTML, CSS and JS)
-- [x] Add all images given to us by coaches
-  - [ ] This can be changed later on
+- [x] Add all images that I made myself
 - [x] Do some research on the parallax effect
 - [x] And some research on the multi-layered parallax effect
 - [x] Add favicon
@@ -62,7 +61,7 @@ And that's precisely what I will be aiming for.
   - [x] Create a class to create the Pokémon
   - [x] Add the Pokémon
   - [x] Let the Pokémon move up and down on key button press down
-- [ ] Add obstacles
+- [x] Add obstacles
   - [x] Create class Obstacles
   - [x] Create boolean let variable hasLost
   - [x] One of the properties should be 'type'
@@ -72,17 +71,19 @@ And that's precisely what I will be aiming for.
   - [x] Make it so obstacles will keep spawning
   - [x] Create a collision, something must happen when obstacle hits player
     - [x] When Pokémon gets hit by obstacle, no matter the typing = (dead)
-- [ ] Add start game button
-- [ ] Make button work, run the entire game once button has been pressed
-- [ ] When user Pokémon faints, show end screen + retry button or go back to page button
 - [ ] Add Attack functionality
-  - [ ] Spacebar = Pokémon Attack
-  - [ ] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
-  - [ ] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
+  - [x] Spacebar = Pokémon Attack
+    - [ ] Currently, A is used for attacks because I haven't figured out yet how to attack with spacebar.
+  - [ ] Add collision with obstacle Pokémon
+    - [ ] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
+    - [ ] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
 - [ ] Add Switch Functionality
   - [ ] Switch between the Pokémon
     - [ ] Different buttons call different Pokémon
     - [ ] A = Grass, Z = Fire and E = Water
+- [ ] Add start game button
+  - [ ] Make button work, run the entire game once button has been pressed
+  - [ ] When user Pokémon faints, show end screen + retry button or go back to page button
 - [ ] Add multiple obstacle Pokémon and let their typings work
 - [ ] Once game is fully functional, add score counter and lives
 
@@ -148,3 +149,12 @@ After writing everything out, I came to the conclusion that making the Latios ga
 And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
 
 ![alt-text](resources/readme-images/buff-torchic.gif)
+
+## Buff Torchic Scorching Mamma Earth
+After adding the attacking functionality, I started feeling like a fully fl**egg**ed big brain Developer Extraordinaire.
+There was a very minor issue with the attacking functionality tho.
+Instead of it only firing out a single flame, it sent out fires fueled by the Dark Lord Himself.
+But that's nothing a lil' interval can't fix!
+So instead of **chickening** out, I decided to jump right back into the code and try to balance the game!
+
+![alt-text](resources/readme-images/torchic-fire.png)
