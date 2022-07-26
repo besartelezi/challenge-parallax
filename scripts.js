@@ -154,6 +154,11 @@ window.addEventListener('keyup', (e) => {
     delete keys[e.key];
 })
 
+
+
+
+
+
 function animate () {
     //clears prior drawing on the canvas
     canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
@@ -170,9 +175,25 @@ function animate () {
     movePokemon();
     // currentObstacle.update();
     // currentObstacle.draw();
-    obstacleArray.forEach(obstacle => {
+    obstacleArray.forEach((obstacle, index) => {
         obstacle.draw();
         obstacle.update();
+        //removes items from array when they leave screen
+        if ((obstacleArray.x + obstacleArray.width) <=0) {
+            setTimeout(() => {
+                obstacleArray.splice(index, 1);
+            }, 0)
+        }
+        //detects collision between player and obstacles
+        if (currentPokemon.x < obstacle.x + obstacle.width &&
+            currentPokemon.x + currentPokemon.width > obstacle.x &&
+            currentPokemon.y < obstacle.y + obstacle.height &&
+            currentPokemon.y + currentPokemon.height > obstacle.y
+        ) {
+            window.alert('ya dead buddy')
+        }
+        else {
+        }
     })
     requestAnimationFrame(animate);
 }
