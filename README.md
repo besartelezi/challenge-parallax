@@ -47,16 +47,17 @@ And that's precisely what I will be aiming for.
     - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
 - [ ] Get artwork for Pokémon Game
   - [x] Get sprite images of Torchic, Mudkip, and Treecko
-    - [ ] If possible, get sprite gif of one of them running
-    - https://pokemondb.net/sprites/mudkip
-      - [ ] Pokémon Black/White have animated sprites, one where they're also jumping.
-      - I can make a sprite sheet of those gifs, one for their idle animation, one for their jumping.
-        - This is something would cost a lot of time, time I'd rather spend on figuring out the logic on making the game work instead of looking good.
   - [ ] Get sprite images of other Pokémon that might appear as obstacles
-    - [x] Just one Pokémon, once this feature works, add others
-    - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
+    - [x] Grass
+    - [x] Normal
+    - [ ] Fire
+    - [ ] Water
+      - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
   - [ ] Get sprite images of fire attack, grass attack, and water attack
     - [x] Just one attack sprite, once attacking works, add others
+      - [x] Fire
+      - [ ] Water
+      - [ ] Grass
 - [x] Add Pokémon on the parallax
   - [x] Create a class to create the Pokémon
   - [x] Add the Pokémon
@@ -66,10 +67,14 @@ And that's precisely what I will be aiming for.
   - [x] Create boolean let variable hasLost
   - [x] One of the properties should be 'type'
   - [x] Add Obstacle
-  - [ ] Make obstacle move
-  - [ ] Create a collision, something must happen when obstacle hits player
-    - [ ] According to type of the obstacle, different things happen to the Pokémon
-    - [ ] When Pokémon gets hit by obstacle, no matter the typing = (dead)
+  - [x] Make obstacle move
+  - [x] Add multiple obstacles
+  - [x] Make it so obstacles will keep spawning
+  - [x] Create a collision, something must happen when obstacle hits player
+    - [x] When Pokémon gets hit by obstacle, no matter the typing = (dead)
+- [ ] Add start game button
+- [ ] Make button work, run the entire game once button has been pressed
+- [ ] When user Pokémon faints, show end screen + retry button or go back to page button
 - [ ] Add Attack functionality
   - [ ] Spacebar = Pokémon Attack
   - [ ] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
@@ -78,7 +83,16 @@ And that's precisely what I will be aiming for.
   - [ ] Switch between the Pokémon
     - [ ] Different buttons call different Pokémon
     - [ ] A = Grass, Z = Fire and E = Water
+- [ ] Add multiple obstacle Pokémon and let their typings work
+- [ ] Once game is fully functional, add score counter and lives
 
+## Extra's when finished
+- [ ] Add animations to user Pokémon
+  - https://pokemondb.net/sprites/mudkip
+    - [ ] Pokémon Black/White have animated sprites, one where they're also jumping.
+    - I can make a sprite sheet of those gifs, one for their idle animation, one for their jumping.
+      - This is something would cost a lot of time, time I'd rather spend on figuring out the logic on making the game work instead of looking good.
+- [ ] Instead of Pokémon moving up and down, let them jump
 
 ## Lettuce Learn Canvas
 While doing my research on this assignment (asking questions to Google, a magic 8-ball and my mom who knows nothing about coding), I stumbled upon something called canvas.
@@ -127,7 +141,7 @@ Here are a few suggestions:
     * Player can't defeat them, these need to be dodged
   * Different Pokémon = different sized obstacles
     * Snorlax = big and slow
-    * Linoone, mediumsized and very fast
+    * Linoone, medium-sized and very fast
     * Charizard = big and can move up and down randomly
 
 After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
