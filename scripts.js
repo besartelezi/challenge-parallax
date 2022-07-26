@@ -33,10 +33,17 @@ treeckoImage.src = "resources/game-images/treecko.png";
 const mudkipImage = new Image();
 mudkipImage.src = "resources/game-images/mudkip.png";
 
+//adding images of obstacle Pokémon
+const ivysaurImage = new Image();
+ivysaurImage.src = "resources/game-images/ivysaur.png";
+const zigzagoonImage = new Image();
+zigzagoonImage.src = "resources/game-images/zigzagoon.png";
+
 //Pokémon typings
 const grass = "grass";
 const fire = "fire";
 const water = "water";
+const normal = "normal";
 
 //creating a class so I don't have to write the code for all the different layers
 class ParallaxBackgroundLayer {
@@ -73,6 +80,7 @@ class ParallaxBackgroundLayer {
 }
 
 class UserPokemon {
+    //passing only elements that will change depending on the new UserPokemon I create in the constructor
     constructor(image, type, width, height) {
         this.image = image;
         this.type = type;
@@ -85,15 +93,44 @@ class UserPokemon {
     }
 }
 
+class ObstaclePokemon {
+    constructor(img, type, width, height) {
+        this.img = img;
+        this.type = type;
+        this.width = width;
+        this.height = height;
+        //needs to be hardcoded, so it will always appear on the far right of the screen
+        this.x = 950;
+        //picks a random y coordinate that's still inside of the canvas
+        this.y = Math.random() * canvas.height;
+    }
+    update() {
+        this.x--;
+    }
+    draw () {
+        //draws obstacle Pokémon on the canvas
+//TODO: find a way to create more obstacles
+        canvasContext.drawImage(currentObstacle.img ,currentObstacle.x, currentObstacle.y, currentObstacle.width, currentObstacle.height)
+    }
+}
+
 //draws Pokémon on the canvas
 function drawPokemon (img, pokemonX, pokemonY, pokemonWidth, pokemonHeight) {
     canvasContext.drawImage(img, pokemonX, pokemonY, pokemonWidth, pokemonHeight)
 }
-//creates new UserPokemon
-const treecko = new UserPokemon(treeckoImage, grass, 100, 102);
 
+//creates new UserPokemon
+const treecko = new UserPokemon(treeckoImage, grass, 98, 100);
+const torchic = new UserPokemon(torchicImage, fire, 67, 100);
+const mudkip = new UserPokemon(mudkipImage, water, 95, 100);
 //The current Pokémon the user has, this is a let variable since I want the user to be able to switch to different Pokemon
-let currentPokemon = treecko;
+let currentPokemon = torchic;
+
+//creates new ObstaclePokemon
+const ivysaur = new ObstaclePokemon(ivysaurImage, grass, 153, 150);
+const zigzagoon = new ObstaclePokemon(zigzagoonImage, normal, 136, 100);
+//The current obstacle
+let currentObstacle = zigzagoon;
 
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
@@ -105,7 +142,7 @@ const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 
 //Array of all layers, instead of calling functions on each object, use for each to call the update and draw functions on them all
 const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, layerGrass]
-
+//array for pressed keys
 const keys = []
 
 window.addEventListener('keydown', (e) => {
@@ -124,11 +161,13 @@ function animate () {
         object.update();
         object.draw();
     })
-
     //draws current Pokémon
     //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
+    //calls move pokemon function
     movePokemon();
+    currentObstacle.draw();
+    currentObstacle.update();
     requestAnimationFrame(animate);
 }
 
@@ -140,7 +179,7 @@ function movePokemon () {
     if (keys["ArrowUp"] && currentPokemon.y > 0) {
         currentPokemon.y -= currentPokemon.speed;
     }
-    if (keys["ArrowDown"] && currentPokemon.y < 494) {
+    if (keys["ArrowDown"] && currentPokemon.y < 500) {
         currentPokemon.y += currentPokemon.speed;
     }
 }

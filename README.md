@@ -57,18 +57,23 @@ And that's precisely what I will be aiming for.
     - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
   - [ ] Get sprite images of fire attack, grass attack, and water attack
     - [x] Just one attack sprite, once attacking works, add others
-- [ ] Add Pokémon on the parallax
-  - [ ] Add the Pokémon
-  - [ ] Let the Pokémon move up and down on key button press down
+- [x] Add Pokémon on the parallax
+  - [x] Create a class to create the Pokémon
+  - [x] Add the Pokémon
+  - [x] Let the Pokémon move up and down on key button press down
 - [ ] Add obstacles
-  - [ ] Create class Obstacles
-  - [ ] One of the properties should be 'type'
+  - [x] Create class Obstacles
+  - [x] Create boolean let variable hasLost
+  - [x] One of the properties should be 'type'
+  - [x] Add Obstacle
+  - [ ] Make obstacle move
+  - [ ] Create a collision, something must happen when obstacle hits player
     - [ ] According to type of the obstacle, different things happen to the Pokémon
     - [ ] When Pokémon gets hit by obstacle, no matter the typing = (dead)
 - [ ] Add Attack functionality
   - [ ] Spacebar = Pokémon Attack
-  - [ ] When Pokémon attack > obstacle Pokémon type = Obstacle removed
-  - [ ] When Pokémon attack <= obstacle Pokémon type = Obstacle still there
+  - [ ] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
+  - [ ] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
 - [ ] Add Switch Functionality
   - [ ] Switch between the Pokémon
     - [ ] Different buttons call different Pokémon
@@ -118,6 +123,12 @@ Here are a few suggestions:
     * Add Shiny Pokémon chance, shinies are worth 10x more points as normal
   * EVOLUTION, once you have a certain amount of points, your Pokémon evolve, first Treecko, then Mudkip, and then Torchic
     * Evolved Pokémon move faster + attack faster
+  * Add normal type obstacles
+    * Player can't defeat them, these need to be dodged
+  * Different Pokémon = different sized obstacles
+    * Snorlax = big and slow
+    * Linoone, mediumsized and very fast
+    * Charizard = big and can move up and down randomly
 
 After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
 And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
