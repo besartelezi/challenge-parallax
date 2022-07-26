@@ -48,6 +48,10 @@ And that's precisely what I will be aiming for.
 - [ ] Get artwork for Pokémon Game
   - [x] Get sprite images of Torchic, Mudkip, and Treecko
     - [ ] If possible, get sprite gif of one of them running
+    - https://pokemondb.net/sprites/mudkip
+      - [ ] Pokémon Black/White have animated sprites, one where they're also jumping.
+      - I can make a sprite sheet of those gifs, one for their idle animation, one for their jumping.
+        - This is something would cost a lot of time, time I'd rather spend on figuring out the logic on making the game work instead of looking good.
   - [ ] Get sprite images of other Pokémon that might appear as obstacles
     - [x] Just one Pokémon, once this feature works, add others
     - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
@@ -69,7 +73,6 @@ And that's precisely what I will be aiming for.
   - [ ] Switch between the Pokémon
     - [ ] Different buttons call different Pokémon
     - [ ] A = Grass, Z = Fire and E = Water
-    - 
 
 
 ## Lettuce Learn Canvas
@@ -118,3 +121,5 @@ Here are a few suggestions:
 
 After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
 And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
+
+![alt-text](resources/readme-images/buff-torchic.gif)
