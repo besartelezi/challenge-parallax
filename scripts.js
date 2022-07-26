@@ -81,15 +81,18 @@ class UserPokemon {
         this.width = width;
         this.height = height;
         this.image = image;
+        this.speed = 5;
     }
 }
 
+//draws Pokémon on the canvas
 function drawPokemon (img, pokemonX, pokemonY, pokemonWidth, pokemonHeight) {
     canvasContext.drawImage(img, pokemonX, pokemonY, pokemonWidth, pokemonHeight)
 }
-
+//creates new UserPokemon
 const treecko = new UserPokemon(treeckoImage, grass, 100, 102);
 
+//The current Pokémon the user has, this is a let variable since I want the user to be able to switch to different Pokemon
 let currentPokemon = treecko;
 
 //creating all the layers in the parallax
@@ -100,7 +103,18 @@ const layerClouds = new ParallaxBackgroundLayer(backgroundLayer4, 0.25)
 const layerTrees = new ParallaxBackgroundLayer(backgroundLayer5, 3.5)
 const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 
+//Array of all layers, instead of calling functions on each object, use for each to call the update and draw functions on them all
 const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, layerGrass]
+
+const keys = []
+
+window.addEventListener('keydown', (e) => {
+    keys[e.key] = true;
+    console.log(keys)
+})
+window.addEventListener('keyup', (e) => {
+    delete keys[e.key];
+})
 
 function animate () {
     //clears prior drawing on the canvas
@@ -110,20 +124,23 @@ function animate () {
         object.update();
         object.draw();
     })
-    drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height)
 
-    requestAnimationFrame(animate)
+    //draws current Pokémon
+    //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
+    drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
+    movePokemon();
+    requestAnimationFrame(animate);
 }
 
 animate()
 
-window.addEventListener("keydown", function (e){
-    console.log(e)
-})
-window.addEventListener("keyup", function (e){
-    console.log(e)
-})
-
+//moving the user's Pokémon
 function movePokemon () {
-    
+    //added '&&' so the users pokemon can't leave the screen
+    if (keys["ArrowUp"] && currentPokemon.y > 0) {
+        currentPokemon.y -= currentPokemon.speed;
+    }
+    if (keys["ArrowDown"] && currentPokemon.y < 494) {
+        currentPokemon.y += currentPokemon.speed;
+    }
 }
