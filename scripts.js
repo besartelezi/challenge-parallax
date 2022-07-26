@@ -190,7 +190,8 @@ function animate () {
             currentPokemon.y < obstacle.y + obstacle.height &&
             currentPokemon.y + currentPokemon.height > obstacle.y
         ) {
-            window.alert('ya dead buddy')
+            alert('ya dead buddy');
+            location.reload();
         }
         else {
         }
