@@ -46,10 +46,13 @@ And that's precisely what I will be aiming for.
   - [x] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
     - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
 - [ ] Get artwork for Pokémon Game
-  - [ ] Get sprite images of Torchic, Mudkip, and Treecko
+  - [x] Get sprite images of Torchic, Mudkip, and Treecko
     - [ ] If possible, get sprite gif of one of them running
   - [ ] Get sprite images of other Pokémon that might appear as obstacles
+    - [x] Just one Pokémon, once this feature works, add others
+    - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
   - [ ] Get sprite images of fire attack, grass attack, and water attack
+    - [x] Just one attack sprite, once attacking works, add others
 - [ ] Add Pokémon on the parallax
   - [ ] Add the Pokémon
   - [ ] Let the Pokémon move up and down on key button press down
@@ -102,12 +105,16 @@ Now that I have finished the parallax effect on my page, it is (gamer) time to f
 
 Here are a few suggestions:
 * You're playing as Latios, flying through the map. You need to dodge everything coming your way (other Pokémon, Pokéballs trying to catch you, Pokémon attacks)
-* You're playing as Torchic (I need to find a gif of pixel Torchic running for this).
+* You're playing as Torchic, Mudkip and Treecko. (You play as just one Pokémon, but you can switch between them)
   * You can dodge Pokémon, you can use fire moves against grass Pokémon to defeat them, so they won't be an obstacle in your way anymore
   * You can't get rid of water type Pokémon
   * The longer the game is continuing on, the bigger the Pokémon will be that start appearing (wailord, kyogre,...)
   * Make it possible to switch between Pokémon, so you can switch between the 3 starters
-    * So if you're playing as Torchic (fire type) and all of a sudden a Squirtle
+    * So if you're playing as Torchic (fire type) and all of a sudden a Squirtle appears (water type, you can switch to Treecko (a grass type) and defeat the Squirtle instead of doding it
+  * Add a Point system per Pokémon defeated
+    * Add Shiny Pokémon chance, shinies are worth 10x more points as normal
+  * EVOLUTION, once you have a certain amount of points, your Pokémon evolve, first Treecko, then Mudkip, and then Torchic
+    * Evolved Pokémon move faster + attack faster
 
 After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
 And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
