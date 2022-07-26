@@ -190,6 +190,18 @@ function animate () {
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
     //calls move pokemon function
     movePokemon();
+    //removes attacks from array when they leave screen
+    pokemonAttacksArray.forEach((attack, index) => {
+        attack.draw();
+        attack.update();
+        if ((attack.x + attack.width) >=1000) {
+            setTimeout(() => {
+                pokemonAttacksArray.splice(index, 1);
+            }, 0)
+        }
+        //TODO: add collision between attacks and obstacles here
+    });
+
     obstacleArray.forEach((obstacle, index) => {
         obstacle.draw();
         obstacle.update();
@@ -209,11 +221,7 @@ function animate () {
             alert('ya dead buddy');
             location.reload();
         }
-    })
-    pokemonAttacksArray.forEach((attack, index) => {
-        attack.draw();
-        attack.update()
-    })
+    });
     requestAnimationFrame(animate);
 }
 
@@ -234,6 +242,7 @@ function movePokemon () {
     }
     //TODO: find spacebar key
     if (keys["a"]) {
+        //TODO: find a way to not call the function repeatedly
         shootAttack();
     }
 }
@@ -249,6 +258,7 @@ function generateObstacles () {
     setTimeout(generateObstacles, obstacleInterval);
 }
 
+//checks what Pokémon the user has currently selected, and adds that types attack to the array
 function shootAttack () {
     if (currentPokemon.type === fire) {
         pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
