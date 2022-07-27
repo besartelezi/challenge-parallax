@@ -45,6 +45,10 @@ zigzagoonImage.src = "resources/game-images/zigzagoon.png";
 //adding images of attacks
 const fireAttackImage = new Image();
 fireAttackImage.src = "resources/game-images/fire-attack.png"
+const waterAttackImage = new Image();
+waterAttackImage.src = "resources/game-images/water-attack.png"
+const grassAttackImage = new Image();
+grassAttackImage.src = "resources/game-images/grass-attack.png"
 
 //Pokémon typings
 //grass beats water, water beats fire, fire beats grass, and none of them beat normal
@@ -163,7 +167,7 @@ const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 //Array of all layers, instead of calling functions on each object, use for each to call the update and draw functions on them all
 const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, layerGrass]
 //array for pressed keys
-const keys = []
+const keys = [];
 //array of obstacle Pokémon
 const obstacleArray = [];
 //array of Pokémon attacks
@@ -212,8 +216,16 @@ function movePokemon () {
     }
     //TODO: find spacebar key
     if (keys["a"]) {
-        //TODO: find a way to not call the function repeatedly
         shootAttack();
+    }
+    if (keys["z"]) {
+        currentPokemon = mudkip;
+    }
+    if (keys["e"]) {
+        currentPokemon = treecko;
+    }
+    if (keys["r"]) {
+        currentPokemon = torchic;
     }
 }
 
@@ -242,10 +254,10 @@ function shootAttack () {
         pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
     }
     if (currentPokemon.type === water) {
-        //TODO: add water attack
+        pokemonAttacksArray.push(new pokemonAttack(waterAttackImage, water, 28, 31, 5));
     }
     if (currentPokemon.type === grass) {
-        //TODO: add grass attack
+        pokemonAttacksArray.push(new pokemonAttack(grassAttackImage, grass, 28, 31, 5));
     }
 }
 
@@ -282,21 +294,29 @@ function animateAttack () {
                 pokemonAttacksArray.splice(index, 1);
             }, 0)
         }
+        //checks for collision between attack and obstacle
         obstacleArray.forEach((obstacle, obstacleIndex) => {
         if (attack.x < obstacle.x + obstacle.width &&
             attack.x + attack.width > obstacle.x &&
             attack.y < obstacle.y + obstacle.height &&
             attack.y + attack.height > obstacle.y) {
+            //checks if type advantage of attack is present
             if (attack.type === fire && obstacle.type === grass ||
                 attack.type === water && obstacle.type === fire ||
                 attack.type === grass && obstacle.type === water
             ) {
+                //if attack is effective against obstacle type, remove obstacle and attack
                 setTimeout(() => {
                     obstacleArray.splice(obstacleIndex, 1);
                     pokemonAttacksArray.splice(index, 1);
                 }, 0)
             }
-        }
-        });
-        });
+            else {
+                setTimeout(() => {
+                    //if attack isn't effective against enemy obstacle type, remove attack
+                    pokemonAttacksArray.splice(index, 1);
+                }, 0)
+            }
+        }});
+    });
 }
