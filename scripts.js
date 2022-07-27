@@ -91,13 +91,18 @@ class ParallaxBackgroundLayer {
     }
 }
 
+class Trainer {
+    constructor() {
+    }
+}
+
 class UserPokemon {
     //passing only elements that will change depending on the new UserPokemon I create in the constructor
     constructor(name, image, type, width, height) {
         this.image = image;
         this.type = type;
         this.x = 20;
-        this.y = 300;
+        this.y = 250;
         this.width = width;
         this.height = height;
         this.image = image;
@@ -191,7 +196,7 @@ function animate () {
     //draws current Pokémon
     //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
     //TODO: if I find another way to switch between Pokémon, this piece of code might become obsolete
-    drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
+    drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height, currentPokemon.x, currentPokemon.y);
     //calls move pokemon function
     movePokemon();
     animateAttack();
@@ -235,7 +240,7 @@ function generateObstacles () {
         obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
     }
     else{
-        obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 2));
+        obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 1));
     }
     setTimeout(generateObstacles, obstacleInterval);
 }
