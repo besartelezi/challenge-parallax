@@ -212,7 +212,7 @@ function animate () {
             }, 0)
         }
         //detects collision between player and obstacles
-        //TODO: rework hitboxes
+        //ODO: rework hitboxes
         if (currentPokemon.x < obstacle.x + obstacle.width &&
             currentPokemon.x + currentPokemon.width > obstacle.x &&
             currentPokemon.y < obstacle.y + obstacle.height &&
@@ -258,8 +258,16 @@ function generateObstacles () {
     setTimeout(generateObstacles, obstacleInterval);
 }
 
+//variables needed for attack delay
+//TODO: set AttackDelay as a property for every other Pokémon, so every Pokémon has different Attack Speed
+let attackDelay = 500;
+let lastClick = 0;
+
 //checks what Pokémon the user has currently selected, and adds that types attack to the array
 function shootAttack () {
+    if (lastClick >= (Date.now() - attackDelay))
+        return;
+    lastClick = Date.now();
     if (currentPokemon.type === fire) {
         pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
     }
@@ -267,8 +275,6 @@ function shootAttack () {
         //TODO: add water attack
     }
     if (currentPokemon.type === grass) {
-        //TODO: add water attack
+        //TODO: add grass attack
     }
 }
-
-
