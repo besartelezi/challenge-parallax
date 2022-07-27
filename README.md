@@ -71,16 +71,23 @@ And that's precisely what I will be aiming for.
   - [x] Make it so obstacles will keep spawning
   - [x] Create a collision, something must happen when obstacle hits player
     - [x] When Pokémon gets hit by obstacle, no matter the typing = (dead)
-- [ ] Add Attack functionality
+- [x] Add Attack functionality
   - [x] Spacebar = Pokémon Attack
     - [ ] Currently, A is used for attacks because I haven't figured out yet how to attack with spacebar.
-  - [ ] Add collision with obstacle Pokémon
-    - [ ] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
-    - [ ] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
+    - [x] Set Timeout, shoot only a single projectile instead of sick barrage of projectiles
+  - [x] Add collision with obstacle Pokémon
+    - [x] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
+    - [x] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
+- [x] Add Grass attacks
+- [x] Add water attacks
 - [ ] Add Switch Functionality
-  - [ ] Switch between the Pokémon
-    - [ ] Different buttons call different Pokémon
-    - [ ] A = Grass, Z = Fire and E = Water
+  - [x] Switch between the Pokémon
+    - [x] Different buttons call different Pokémon
+    - [x] A = Grass, Z = Fire and E = Water
+    - [x] Fix Attacks
+    - [ ] Fix positioning when switching
+      - [ ] Add X and Y to constructor of new Pokémon
+      - [ ] Set X and Y at the beginning of the game
 - [ ] Add start game button
   - [ ] Make button work, run the entire game once button has been pressed
   - [ ] When user Pokémon faints, show end screen + retry button or go back to page button
@@ -146,7 +153,7 @@ Here are a few suggestions:
     * Charizard = big and can move up and down randomly
 
 After writing everything out, I came to the conclusion that making the Latios game might be easier, making the 3 starters game would be WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY more fun.
-And thus, I shall be trying to create the Pokémon Emerald: Starters Adventure game.
+And thus, I shall be trying to create the Pokémon: Starters Adventure game.
 
 ![alt-text](resources/readme-images/buff-torchic.gif)
 
@@ -158,3 +165,14 @@ But that's nothing a lil' interval can't fix!
 So instead of **chickening** out, I decided to jump right back into the code and try to balance the game!
 
 ![alt-text](resources/readme-images/torchic-fire.png)
+
+## Positioning, damn this is difficult
+At this point, the switching function works, the attacking works, everything is looking crispy and creamy.
+Except for one bug that's destroying the game in my opinion.
+When the user switches Pokémon, the newly switched in Pokémon won't be placed at the x and y coordinates of the previous Pokémon.
+Instead, they will be placed at the x and y coordinates of the location they previously were BEFORE switching.
+I understand how this bug works, but good lordy I'm having trouble figuring out how to fix it.
+
+## Concluding this Conclusion, Constant Control in the Corner
+In short, I'm very damn proud of myself for the way I tackled this assignment and because of the result I achieved.
+There are still some features I'd like to add, some bugs that might need a fixer-upper.
