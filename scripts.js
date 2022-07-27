@@ -190,38 +190,8 @@ function animate () {
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height);
     //calls move pokemon function
     movePokemon();
-    //removes attacks from array when they leave screen
-    pokemonAttacksArray.forEach((attack, index) => {
-        attack.draw();
-        attack.update();
-        if ((attack.x + attack.width) >=1000) {
-            setTimeout(() => {
-                pokemonAttacksArray.splice(index, 1);
-            }, 0)
-        }
-        //TODO: add collision between attacks and obstacles here
-    });
-
-    obstacleArray.forEach((obstacle, index) => {
-        obstacle.draw();
-        obstacle.update();
-        //removes items from array when they leave screen
-        if ((obstacleArray.x + obstacleArray.width) <=0) {
-            setTimeout(() => {
-                obstacleArray.splice(index, 1);
-            }, 0)
-        }
-        //detects collision between player and obstacles
-        //ODO: rework hitboxes
-        if (currentPokemon.x < obstacle.x + obstacle.width &&
-            currentPokemon.x + currentPokemon.width > obstacle.x &&
-            currentPokemon.y < obstacle.y + obstacle.height &&
-            currentPokemon.y + currentPokemon.height > obstacle.y
-        ) {
-            alert('ya dead buddy');
-            location.reload();
-        }
-    });
+    animateAttack();
+    animateObstacles();
     requestAnimationFrame(animate);
 }
 
@@ -277,4 +247,56 @@ function shootAttack () {
     if (currentPokemon.type === grass) {
         //TODO: add grass attack
     }
+}
+
+function animateObstacles () {
+    obstacleArray.forEach((obstacle, index) => {
+        obstacle.draw();
+        obstacle.update();
+        //removes items from array when they leave screen
+        if ((obstacleArray.x + obstacleArray.width) <=0) {
+            setTimeout(() => {
+                obstacleArray.splice(index, 1);
+            }, 0)
+        }
+        //detects collision between player and obstacles
+        //TODO: rework hitboxes
+        if (currentPokemon.x < obstacle.x + obstacle.width &&
+            currentPokemon.x + currentPokemon.width > obstacle.x &&
+            currentPokemon.y < obstacle.y + obstacle.height &&
+            currentPokemon.y + currentPokemon.height > obstacle.y
+        ) {
+            alert('ya dead buddy');
+            location.reload();
+        }
+    });
+}
+
+function animateAttack () {
+    //removes attacks from array when they leave screen
+    pokemonAttacksArray.forEach((attack, index) => {
+        attack.draw();
+        attack.update();
+        if ((attack.x + attack.width) >=1000) {
+            setTimeout(() => {
+                pokemonAttacksArray.splice(index, 1);
+            }, 0)
+        }
+        obstacleArray.forEach((obstacle, obstacleIndex) => {
+        if (attack.x < obstacle.x + obstacle.width &&
+            attack.x + attack.width > obstacle.x &&
+            attack.y < obstacle.y + obstacle.height &&
+            attack.y + attack.height > obstacle.y) {
+            if (attack.type === fire && obstacle.type === grass ||
+                attack.type === water && obstacle.type === fire ||
+                attack.type === grass && obstacle.type === water
+            ) {
+                setTimeout(() => {
+                    obstacleArray.splice(obstacleIndex, 1);
+                    pokemonAttacksArray.splice(index, 1);
+                }, 0)
+            }
+        }
+        });
+        });
 }
