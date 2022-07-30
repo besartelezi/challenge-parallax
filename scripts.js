@@ -91,18 +91,16 @@ class ParallaxBackgroundLayer {
     }
 }
 
-class Trainer {
-    constructor() {
-    }
-}
+let currentX = 15;
+let currentY = 250;
 
 class UserPokemon {
     //passing only elements that will change depending on the new UserPokemon I create in the constructor
     constructor(name, image, type, width, height) {
         this.image = image;
         this.type = type;
-        this.x = 20;
-        this.y = 250;
+        this.x = currentX;
+        this.y = currentY;
         this.width = width;
         this.height = height;
         this.image = image;
@@ -214,11 +212,39 @@ setTimeout(() => {
 function movePokemon () {
     //added '&&' so the users pokemon can't leave the screen
     if (keys["ArrowUp"] && currentPokemon.y > 0) {
-        currentPokemon.y -= currentPokemon.speed;
+        //created this if statement, so that all the x and the y will stay the same
+        if (currentPokemon === torchic) {
+            currentPokemon.y -= currentPokemon.speed;
+            treecko.y -= treecko.speed;
+            mudkip.y -= mudkip.speed;
+        }
+        if (currentPokemon === treecko) {
+            currentPokemon.y -= currentPokemon.speed;
+            torchic.y -= torchic.speed;
+            mudkip.y -= mudkip.speed;
+        }
+        if (currentPokemon === mudkip){
+            currentPokemon.y -= currentPokemon.speed;
+            torchic.y -= torchic.speed;
+            treecko.y -= treecko.speed;
+        }
     }
     if (keys["ArrowDown"] && currentPokemon.y < 500) {
-        currentPokemon.y += currentPokemon.speed;
-    }
+        if (currentPokemon === torchic) {
+            currentPokemon.y += currentPokemon.speed;
+            treecko.y += treecko.speed;
+            mudkip.y += mudkip.speed;
+        }
+        if (currentPokemon === treecko) {
+            currentPokemon.y += currentPokemon.speed;
+            torchic.y += torchic.speed;
+            mudkip.y += mudkip.speed;
+        }
+        if (currentPokemon === mudkip) {
+            currentPokemon.y += currentPokemon.speed;
+            torchic.y += torchic.speed;
+            treecko.y += treecko.speed;
+        }    }
     //TODO: find spacebar key
     if (keys["a"]) {
         shootAttack();
