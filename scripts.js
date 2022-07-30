@@ -12,7 +12,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 let gameSpeed = 1;
 //interval between obstacles appearing
 //TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
-let obstacleInterval = 1500;
+let obstacleInterval = 500;
 
 //adds new Images
 const backgroundLayer1 = new Image();
@@ -41,6 +41,10 @@ const ivysaurImage = new Image();
 ivysaurImage.src = "resources/game-images/ivysaur.png";
 const zigzagoonImage = new Image();
 zigzagoonImage.src = "resources/game-images/zigzagoon.png";
+const squirtleImage = new Image();
+squirtleImage.src = "resources/game-images/squirtle.png";
+const charizardImage = new Image();
+charizardImage.src = "resources/game-images/charizard.png";
 
 //adding images of attacks
 const fireAttackImage = new Image();
@@ -157,7 +161,11 @@ const treecko = new UserPokemon("Treecko", treeckoImage, grass, 98, 100);
 const torchic = new UserPokemon("Torchic" , torchicImage, fire, 67, 100);
 const mudkip = new UserPokemon("Mudkip" , mudkipImage, water, 95, 100);
 //The current Pokémon the user has, this is a let variable since I want the user to be able to switch to different Pokemon
-let currentPokemon = torchic;
+let currentPokemon = treecko;
+
+let grassPoints = 0;
+let firePoints = 0;
+let waterPoints = 0;
 
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
@@ -193,7 +201,6 @@ function animate () {
     })
     //draws current Pokémon
     //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
-    //TODO: if I find another way to switch between Pokémon, this piece of code might become obsolete
     drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height, currentPokemon.x, currentPokemon.y);
     //calls move pokemon function
     movePokemon();
@@ -259,14 +266,26 @@ function movePokemon () {
         currentPokemon = torchic;
     }
 }
+//gives a random value
+function randomValue () {
+    return Math.round(Math.random() * 7);
+}
 
+//according to a random value, spawn an obstacle Pokémon
 function generateObstacles () {
     //TODO: expand math random and add other Pokémon Obstacles
-    if (Math.round(Math.random())) {
+    if (randomValue() <= 0) {
+        obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 1));
+    }
+    if (randomValue() > 1 && randomValue() <3){
         obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
     }
-    else{
-        obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 1));
+    if (randomValue() >3 && randomValue() <5) {
+        obstacleArray.push(new ObstaclePokemon("Squirtle" ,squirtleImage, water, 97, 100, 2));
+
+    }
+    if (randomValue() >5) {
+        obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 4));
     }
     setTimeout(generateObstacles, obstacleInterval);
 }
@@ -341,6 +360,21 @@ function animateAttack () {
                     obstacleArray.splice(obstacleIndex, 1);
                     pokemonAttacksArray.splice(index, 1);
                 }, 0)
+                //adding point to pokemon type
+                if (attack.type === fire) {
+                    firePoints++;
+                    console.log(firePoints)
+                }
+                if (attack.type === water) {
+                    waterPoints++;
+                    console.log(waterPoints)
+
+                }
+                if (attack.type === grass) {
+                    grassPoints++;
+                    console.log(grassPoints)
+
+                }
             }
             else {
                 setTimeout(() => {
