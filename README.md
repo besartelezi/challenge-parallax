@@ -44,19 +44,19 @@ And that's precisely what I will be aiming for.
   - [x] Make sure it keeps looping
   - [x] OOP - Create a class called "BackgroundAnimation" (name may be changed in the future)
     - This is needed to give different properties to every 'BackgroundAnimation' object (assets)
-- [ ] Get artwork for Pokémon Game
+- [x] Get artwork for Pokémon Game
   - [x] Get sprite images of Torchic, Mudkip, and Treecko
-  - [ ] Get sprite images of other Pokémon that might appear as obstacles
+  - [x] Get sprite images of other Pokémon that might appear as obstacles
     - [x] Grass
     - [x] Normal
-    - [ ] Fire
-    - [ ] Water
+    - [x] Fire
+    - [x] Water
       - The User's Pokémon + The Obstacles = Need to be in classes so I can add more in the future
-  - [ ] Get sprite images of fire attack, grass attack, and water attack
+  - [x] Get sprite images of fire attack, grass attack, and water attack
     - [x] Just one attack sprite, once attacking works, add others
       - [x] Fire
-      - [ ] Water
-      - [ ] Grass
+      - [x] Water
+      - [x] Grass
 - [x] Add Pokémon on the parallax
   - [x] Create a class to create the Pokémon
   - [x] Add the Pokémon
