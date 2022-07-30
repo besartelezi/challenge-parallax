@@ -72,7 +72,7 @@ And that's precisely what I will be aiming for.
   - [x] Create a collision, something must happen when obstacle hits player
     - [x] When Pokémon gets hit by obstacle, no matter the typing = (dead)
 - [x] Add Attack functionality
-  - [x] Spacebar = Pokémon Attack
+  - [ ] Spacebar = Pokémon Attack
     - [ ] Currently, A is used for attacks because I haven't figured out yet how to attack with spacebar.
     - [x] Set Timeout, shoot only a single projectile instead of sick barrage of projectiles
   - [x] Add collision with obstacle Pokémon
@@ -80,14 +80,12 @@ And that's precisely what I will be aiming for.
     - [x] When Pokémon attack type <= obstacle Pokémon type = Obstacle still there
 - [x] Add Grass attacks
 - [x] Add water attacks
-- [ ] Add Switch Functionality
+- [x] Add Switch Functionality
   - [x] Switch between the Pokémon
     - [x] Different buttons call different Pokémon
     - [x] A = Grass, Z = Fire and E = Water
     - [x] Fix Attacks
-    - [ ] Fix positioning when switching
-      - [ ] Add X and Y to constructor of new Pokémon
-      - [ ] Set X and Y at the beginning of the game
+    - [x] Fix positioning when switching
 - [ ] Add start game button
   - [ ] Make button work, run the entire game once button has been pressed
   - [ ] When user Pokémon faints, show end screen + retry button or go back to page button
@@ -173,6 +171,36 @@ When the user switches Pokémon, the newly switched in Pokémon won't be placed 
 Instead, they will be placed at the x and y coordinates of the location they previously were BEFORE switching.
 I understand how this bug works, but good lordy I'm having trouble figuring out how to fix it.
 
+I was finally able to fix it, but I found a very creative solution to the problem.
+When the user moves the Pokémon, they also move the x and y of the current Pokémon.
+But not of the other 2 Pokémon that the user can switch in.
+This is how I solved it.
+
+````
+ if (keys["ArrowUp"] && currentPokemon.y > 0) {
+        //created this if statement, so that all the x and the y will stay the same
+        if (currentPokemon === torchic) {
+            currentPokemon.y -= currentPokemon.speed;
+            treecko.y -= treecko.speed;
+            mudkip.y -= mudkip.speed;
+        }
+        if (currentPokemon === treecko) {
+            currentPokemon.y -= currentPokemon.speed;
+            torchic.y -= torchic.speed;
+            mudkip.y -= mudkip.speed;
+        }
+        if (currentPokemon === mudkip){
+            currentPokemon.y -= currentPokemon.speed;
+            torchic.y -= torchic.speed;
+            treecko.y -= treecko.speed;
+        }
+    }
+````
+I wanted to create another class, called the Trainer class, and have it's x and y switched with that of the current Pokémon.
+But I couldn't find a way to make it work, so I though this might work.
+In the end it did, so I'm glad I was able to resolve the issue, but I would've liked to have found a better solution to this problem.
+
 ## Concluding this Conclusion, Constant Control in the Corner
 In short, I'm very damn proud of myself for the way I tackled this assignment and because of the result I achieved.
 There are still some features I'd like to add, some bugs that might need a fixer-upper.
+
