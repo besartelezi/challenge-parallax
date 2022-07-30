@@ -89,9 +89,13 @@ And that's precisely what I will be aiming for.
 - [ ] Add start game button
   - [ ] Make button work, run the entire game once button has been pressed
   - [ ] When user Pokémon faints, show end screen + retry button or go back to page button
-- [ ] Add multiple obstacle Pokémon and let their typings work
-- [ ] Once game is fully functional, add score counter and lives
-
+- [ ] Add Point system
+  - [x] Add let variables of type total points
+  - [x] When pokemon defeats obstacle Pokémon, their respective type points grows
+  - [ ] Add visual of total type points
+- [ ] Edit layout game
+  - [ ] 
+- [ ] Add more different Pokémon
 ## Extra's when finished
 - [ ] Add animations to user Pokémon
   - https://pokemondb.net/sprites/mudkip
@@ -199,6 +203,15 @@ This is how I solved it.
 I wanted to create another class, called the Trainer class, and have it's x and y switched with that of the current Pokémon.
 But I couldn't find a way to make it work, so I though this might work.
 In the end it did, so I'm glad I was able to resolve the issue, but I would've liked to have found a better solution to this problem.
+
+## Layout, not laying eggs
+Once I'm done with the most key features of the game, I will be able to shift my focus to the layout of the site.
+The background colour will remain this shade of green, since it reminds me the most of the game Pokémon Emerald, the game that inspired me to create my own game.
+
+For the layout itself, I have added a paint image below to showcase how I want the layout to eventually look like.
+I might not follow the design 100% though, since things can always change.
+
+![alt-text](resources/readme-images/layout.png)
 
 ## Concluding this Conclusion, Constant Control in the Corner
 In short, I'm very damn proud of myself for the way I tackled this assignment and because of the result I achieved.
