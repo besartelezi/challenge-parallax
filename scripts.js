@@ -61,6 +61,9 @@ const fire = "fire";
 const water = "water";
 const normal = "normal";
 
+//the users status, if the users pokémon is hit, they lose
+let hasUserLost = false;
+
 //creating a class so I don't have to write the code for all the different layers
 class ParallaxBackgroundLayer {
     constructor(image, speedModifier) {
@@ -192,21 +195,26 @@ window.addEventListener('keyup', (e) => {
 })
 
 function animateGame () {
-    //clears prior drawing on the canvas
-    canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
-    //call on the update and draw functions on each of the layers
-    layerArray.forEach(layer => {
-        layer.update();
-        layer.draw();
-    })
-    //draws current Pokémon
-    //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
-    drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height, currentPokemon.x, currentPokemon.y);
-    //calls move pokemon function
-    movePokemon();
-    animateAttack();
-    animateObstacles();
-    requestAnimationFrame(animateGame);
+    if (hasUserLost === false) {
+        //clears prior drawing on the canvas
+        canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
+        //call on the update and draw functions on each of the layers
+        layerArray.forEach(layer => {
+            layer.update();
+            layer.draw();
+        })
+        //draws current Pokémon
+        //used current Pokémon variable because I want to re-use this function for all Pokémon the user has
+        drawPokemon(currentPokemon.image, currentPokemon.x, currentPokemon.y, currentPokemon.width, currentPokemon.height, currentPokemon.x, currentPokemon.y);
+        //calls move pokemon function
+        movePokemon();
+        animateAttack();
+        animateObstacles();
+        requestAnimationFrame(animateGame);
+    }
+    else {
+        return;
+    }
 }
 
 //TODO: Create a button, and on button click, that button gets deleted
@@ -222,6 +230,7 @@ startButton.onclick = () => {
         generateObstacles();
         console.log(obstacleArray)
     }, 0);
+    startButton.remove();
 }
 
 //moving the user's Pokémon
@@ -265,19 +274,19 @@ function movePokemon () {
     if (keys[" "]) {
         shootAttack();
     }
+    if (keys["a"]) {
+        currentPokemon = treecko;
+    }
     if (keys["z"]) {
         currentPokemon = mudkip;
     }
-    if (keys[" "]) {
-        currentPokemon = treecko;
-    }
-    if (keys["r"]) {
+    if (keys["e"]) {
         currentPokemon = torchic;
     }
 }
 //gives a random value
 function randomValue () {
-    return Math.round(Math.random() * 7);
+    return Math.round(Math.random() * 6);
 }
 
 //according to a random value, spawn an obstacle Pokémon
@@ -291,8 +300,8 @@ function generateObstacles () {
     }
     if (randomValue() >3 && randomValue() <5) {
         obstacleArray.push(new ObstaclePokemon("Squirtle" ,squirtleImage, water, 97, 100, 2));
-
     }
+    //TODO add more Pokémon, once mire have been added, update Charizard spawn rate
     if (randomValue() >5) {
         obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 4));
     }
@@ -335,10 +344,9 @@ function animateObstacles () {
         if (currentPokemon.x < obstacle.x + obstacle.width &&
             currentPokemon.x + currentPokemon.width > obstacle.x &&
             currentPokemon.y < obstacle.y + obstacle.height &&
-            currentPokemon.y + currentPokemon.height > obstacle.y
-        ) {
-            alert('ya dead buddy');
-            location.reload();
+            currentPokemon.y + currentPokemon.height > obstacle.y)
+        {
+            hasUserLost = true;
         }
     });
 }
