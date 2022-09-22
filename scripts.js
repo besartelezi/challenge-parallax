@@ -12,7 +12,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 let gameSpeed = 1;
 //interval between obstacles appearing
 //TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
-let obstacleInterval = 500;
+let obstacleInterval = 1000;
 
 //adds new Images
 const backgroundLayer1 = new Image();
@@ -191,7 +191,7 @@ window.addEventListener('keyup', (e) => {
     delete keys[e.key];
 })
 
-function animate () {
+function animateGame () {
     //clears prior drawing on the canvas
     canvasContext.clearRect(0, 0,  CANVAS_WIDTH, CANVAS_HEIGHT)
     //call on the update and draw functions on each of the layers
@@ -206,14 +206,23 @@ function animate () {
     movePokemon();
     animateAttack();
     animateObstacles();
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateGame);
 }
 
-animate();
-setTimeout(() => {
-    generateObstacles();
-    console.log(obstacleArray)
-}, 0);
+//TODO: Create a button, and on button click, that button gets deleted
+let startButton = document.createElement("button");
+startButton.setAttribute("id", "startButton");
+startButton.textContent = "Start Game!";
+document.body.appendChild(startButton);
+
+startButton.onclick = () => {
+    animateGame();
+    //this function handles the attacks and the collision
+    setTimeout(() => {
+        generateObstacles();
+        console.log(obstacleArray)
+    }, 0);
+}
 
 //moving the user's Pokémon
 function movePokemon () {
@@ -253,13 +262,13 @@ function movePokemon () {
             treecko.y += treecko.speed;
         }    }
     //TODO: find spacebar key
-    if (keys["a"]) {
+    if (keys[" "]) {
         shootAttack();
     }
     if (keys["z"]) {
         currentPokemon = mudkip;
     }
-    if (keys["e"]) {
+    if (keys[" "]) {
         currentPokemon = treecko;
     }
     if (keys["r"]) {
