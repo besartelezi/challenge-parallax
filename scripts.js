@@ -12,7 +12,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 let gameSpeed = 1;
 //interval between obstacles appearing
 //TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
-let obstacleInterval = 1000;
+let obstacleInterval = 1500;
 
 //adds new Images
 const backgroundLayer1 = new Image();
@@ -97,7 +97,7 @@ class ParallaxBackgroundLayer {
         canvasContext.drawImage(this.image, this.x2, this.y, this.width, this.height)
     }
 }
-
+//starting position of the Pokémon
 let currentX = 15;
 let currentY = 250;
 
@@ -124,7 +124,7 @@ class ObstaclePokemon {
         //needs to be hardcoded, so it will always appear on the far right of the screen
         this.x = 950;
         //picks a random y coordinate that's still inside of the canvas
-        this.y = Math.random() * canvas.height;
+        this.y = Math.random() * (canvas.height - 125);
         this.speed = speed;
     }
     update() {
@@ -181,9 +181,9 @@ const layerGrass = new ParallaxBackgroundLayer(backgroundLayer6, 6)
 //Array of all layers, instead of calling functions on each object, use for each to call the update and draw functions on them all
 const layerArray = [layerSky, layerSea, layerLapras, layerClouds, layerTrees, layerGrass]
 //array for pressed keys
-const keys = [];
+let keys = [];
 //array of obstacle Pokémon
-const obstacleArray = [];
+let obstacleArray = [];
 //array of Pokémon attacks
 const pokemonAttacksArray = [];
 
@@ -224,14 +224,19 @@ startButton.textContent = "Start Game!";
 document.body.appendChild(startButton);
 
 startButton.onclick = () => {
+    startGame();
+    startButton.remove();
+}
+
+function startGame () {
     animateGame();
     //this function handles the attacks and the collision
     setTimeout(() => {
         generateObstacles();
         console.log(obstacleArray)
     }, 0);
-    startButton.remove();
 }
+
 
 //moving the user's Pokémon
 function movePokemon () {
@@ -269,7 +274,9 @@ function movePokemon () {
             currentPokemon.y += currentPokemon.speed;
             torchic.y += torchic.speed;
             treecko.y += treecko.speed;
-        }    }
+        }
+    }
+
     //TODO: find spacebar key
     if (keys[" "]) {
         shootAttack();
@@ -284,28 +291,36 @@ function movePokemon () {
         currentPokemon = torchic;
     }
 }
-//gives a random value
+//gives a random value, can do to 100 to work in percentages
 function randomValue () {
-    return Math.round(Math.random() * 6);
+    return Math.round(Math.random() * 100);
 }
 
 //according to a random value, spawn an obstacle Pokémon
 function generateObstacles () {
     //TODO: expand math random and add other Pokémon Obstacles
-    if (randomValue() <= 0) {
+    if (randomValue() <= 30) {
         obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 1));
     }
-    if (randomValue() > 1 && randomValue() <3){
+    if (randomValue() > 30 && randomValue() <60){
         obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
     }
-    if (randomValue() >3 && randomValue() <5) {
+    if (randomValue() >60 && randomValue() <90) {
         obstacleArray.push(new ObstaclePokemon("Squirtle" ,squirtleImage, water, 97, 100, 2));
     }
-    //TODO add more Pokémon, once mire have been added, update Charizard spawn rate
-    if (randomValue() >5) {
+    //TODO add more Pokémon, once more have been added, update Charizard spawn rate
+    if (randomValue() >100) {
         obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 4));
     }
-    setTimeout(generateObstacles, obstacleInterval);
+    //stops generating obstacles when user has lost
+    if (hasUserLost === false) {
+        setTimeout(generateObstacles, obstacleInterval);
+    }
+    else if (hasUserLost === true) {
+        obstacleArray = [];
+        return
+    }
+    console.log(obstacleArray)
 }
 
 //variables needed for attack delay
@@ -346,9 +361,29 @@ function animateObstacles () {
             currentPokemon.y < obstacle.y + obstacle.height &&
             currentPokemon.y + currentPokemon.height > obstacle.y)
         {
-            hasUserLost = true;
+            handleLoss();
         }
     });
+}
+
+function handleLoss () {
+    hasUserLost = true;
+    obstacleArray = [];
+    let restartButton = document.createElement("button");
+    restartButton.setAttribute("id", "restartButton");
+    restartButton.textContent = "Play Again!";
+    document.body.appendChild(restartButton);
+
+    restartButton.onclick = () => {
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        obstacleArray = [];
+        currentX = 15;
+        currentY = 250;
+        hasUserLost = false;
+        startGame();
+        restartButton.remove();
+    }
 }
 
 function animateAttack () {
