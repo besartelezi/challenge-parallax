@@ -72,8 +72,8 @@ And that's precisely what I will be aiming for.
   - [x] Create a collision, something must happen when obstacle hits player
     - [x] When Pokémon gets hit by obstacle, no matter the typing = (dead)
 - [x] Add Attack functionality
-  - [ ] Spacebar = Pokémon Attack
-    - [ ] Currently, A is used for attacks because I haven't figured out yet how to attack with spacebar.
+  - [x] Spacebar = Pokémon Attack
+    - [x] Currently, A is used for attacks because I haven't figured out yet how to attack with spacebar.
     - [x] Set Timeout, shoot only a single projectile instead of sick barrage of projectiles
   - [x] Add collision with obstacle Pokémon
     - [x] When Pokémon attack type > obstacle Pokémon type = Obstacle removed
@@ -86,9 +86,9 @@ And that's precisely what I will be aiming for.
     - [x] A = Grass, Z = Fire and E = Water
     - [x] Fix Attacks
     - [x] Fix positioning when switching
-- [ ] Add start game button
-  - [ ] Make button work, run the entire game once button has been pressed
-  - [ ] When user Pokémon faints, show end screen + retry button or go back to page button
+- [x] Add start game button
+  - [x] Make button work, run the entire game once button has been pressed
+  - [x] When user Pokémon faints, show end screen + retry button or go back to page button
 - [ ] Add Point system
   - [x] Add let variables of type total points
   - [x] When pokemon defeats obstacle Pokémon, their respective type points grows
@@ -216,4 +216,19 @@ I might not follow the design 100% though, since things can always change.
 In short, I'm very damn proud of myself for the way I tackled this assignment and because of the result I achieved.
 There are still some features I'd like to add, some bugs that might need a fixer-upper.
 
+## BUG CATCHER Besart wants to fight!
+He sent out a Kakuna.
+Kakuna used harden.
+It was very effective!
 
+I recently came back to this project, since this is a personal favourite of mine and I really wanted to finish it.
+The first thing I did, was a lot of bug-fixing.
+I fixed a bug where multiple obstacle Pokémon would spawn at once, a bug where the obstacle Pokémon that left the screen wouldn't get spliced out of the ObstacleArray, and I added a start and restart button.
+
+Coming back to this project, I also realized how much I've grown as a Developer.
+Because the first thing I wanted to do was refactor everything, create more classes and turn all the functions into methods.
+The code may be a bit chaotic, but not so chaotic that I lost too much time on it.
+
+## New Goals
+The first goal has been cleared already, and that was fixing all the bugs and adding a start and play again button.
+With that out of the way, I can start working on the next 
