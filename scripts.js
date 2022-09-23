@@ -448,9 +448,15 @@ function handleLoss () {
         grassPoints = 0;
         firePoints = 0;
         waterPoints = 0;
+        totalPoints = 0;
 
         obstacleArray = [];
         hasUserLost = false;
+
+        showUserGrassPoints.innerHTML = grassPoints;
+        showUserWaterPoints.innerHTML = waterPoints;
+        showUserFirePoints.innerHTML = firePoints;
+        showUserTotalPoints.innerHTML = totalPoints;
 
         //sets Pokémon back where it started
         //commented it out for now, since having the Pokémon have the same position as before makes it feel more alive
