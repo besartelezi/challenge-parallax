@@ -1,12 +1,53 @@
 body {
-    background: forestgreen;
+    background: #1a2c2c;
+    color: white;
+    font-family: sans-serif;
 }
+
+.point-container {
+    display: flex;
+    align-content: center;
+    background-color: black;
+    margin: 1%;
+}
+
+.point-container div {
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    width: 100%;
+}
+.grass-points-div {
+    background-color: green;
+}
+
+.water-points-div {
+    background-color: darkblue;
+}
+
+.fire-points-div {
+    background-color: red;
+}
+
+.game-container {
+    display: flex;
+    background-color: darkslategrey;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
 #canvas {
-    position: absolute;
     border: 3px solid white;
     width: 960px;
     height: 600px;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    margin: 10px;
+}
+.game-guide {
+    width: 20%;
+    padding: 1%;
+}
+.controls {
+    width: 10%;
+    padding: 1%;
 }
