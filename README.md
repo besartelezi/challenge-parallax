@@ -96,13 +96,14 @@ And that's precisely what I will be aiming for.
 - [ ] Edit layout game
 - [ ] Add more Obstacle Pokémon
   - [ ] I'd like to have all 3 evolution stages of the Kanto starters
-  - [ ]Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
-- [ ]Add evolutions
+  - [ ] Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
+- [ ] Add evolutions
   - [ ] Once the user has 25/50 points on their Pokémon, that Pokémon will evolve.
   - [ ] When they have 100 points, they will evolve once more
 - [ ] Have shiny Pokémon
   - [ ] Give the Pokémon a shinyChance property, and depending on that property, they might spawn as a shiny Pokémon.
   - [ ] Both the Obstacle Pokémon, as well as the player's Pokémon, will have a shinyChance property
+  - [ ] Shinies give a 10 * point boost when that specific Pokémon gets defeated
 
 ## Extra's when finished
 - [ ] Add animations to user Pokémon
