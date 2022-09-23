@@ -64,6 +64,12 @@ const normal = "normal";
 //the users status, if the users pokémon is hit, they lose
 let hasUserLost = false;
 
+//Points the user has, shown on the HTML
+let showUserFirePoints = document.getElementById("fire-points");
+let showUserGrassPoints = document.getElementById("grass-points");
+let showUserWaterPoints = document.getElementById("water-points");
+let showUserTotalPoints = document.getElementById("total-points");
+
 //creating a class so I don't have to write the code for all the different layers
 class ParallaxBackgroundLayer {
     constructor(image, speedModifier) {
@@ -169,8 +175,7 @@ let currentPokemon = treecko;
 let grassPoints = 0;
 let firePoints = 0;
 let waterPoints = 0;
-
-let totalPoints = grassPoints + firePoints + waterPoints;
+let totalPoints = 0;
 
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
@@ -321,12 +326,23 @@ function animateAttack () {
                     //adding point to pokemon type
                     if (attack.type === fire) {
                         firePoints++;
+                        totalPoints++;
+                        showUserFirePoints.innerHTML = firePoints;
+                        showUserTotalPoints.innerHTML = totalPoints;
                     }
                     if (attack.type === water) {
                         waterPoints++;
+                        totalPoints++;
+                        showUserGrassPoints.innerHTML = waterPoints;
+                        showUserTotalPoints.innerHTML = totalPoints;
+
                     }
                     if (attack.type === grass) {
                         grassPoints++;
+                        totalPoints++;
+                        showUserWaterPoints.innerHTML = grassPoints;
+                        showUserTotalPoints.innerHTML = totalPoints;
+
                     }
                 }
                 else {
@@ -339,11 +355,10 @@ function animateAttack () {
     });
 }
 
-
 //gives a random value, can do to 100 to work in percentages
 let randomNumber;
 function randomValue () {
-    randomNumber = Math.round(Math.random() * 5);
+    randomNumber = Math.round(Math.random() * 3);
 }
 
 //according to a random value, spawn an obstacle Pokémon
@@ -397,11 +412,12 @@ function animateObstacles () {
     });
 }
 
-//TODO: Create a button, and on button click, that button gets deleted
+//TODO: style buttons
 let startButton = document.createElement("button");
 startButton.setAttribute("id", "startButton");
 startButton.textContent = "Start Game!";
 document.body.appendChild(startButton);
+//add styling of button
 
 startButton.onclick = () => {
     startGame();
@@ -432,6 +448,7 @@ function handleLoss () {
         grassPoints = 0;
         firePoints = 0;
         waterPoints = 0;
+
         obstacleArray = [];
         hasUserLost = false;
 
@@ -449,3 +466,4 @@ function handleLoss () {
         restartButton.remove();
     }
 }
+
