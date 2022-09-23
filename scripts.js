@@ -170,6 +170,8 @@ let grassPoints = 0;
 let firePoints = 0;
 let waterPoints = 0;
 
+let totalPoints = grassPoints + firePoints + waterPoints;
+
 //creating all the layers in the parallax
 const layerSky = new ParallaxBackgroundLayer(backgroundLayer1, 0.25)
 const layerSea = new ParallaxBackgroundLayer(backgroundLayer2, 1.5)
