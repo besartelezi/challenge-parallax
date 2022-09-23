@@ -12,7 +12,7 @@ const CANVAS_HEIGHT = canvas.height = 600;
 let gameSpeed = 1;
 //interval between obstacles appearing
 //TODO: create a function that changes the obstacleInterval randomly, when score system is implemented = implement this feature
-let obstacleInterval = 1500;
+let obstacleInterval = 3000;
 
 //adds new Images
 const backgroundLayer1 = new Image();
@@ -128,6 +128,9 @@ class ObstaclePokemon {
         this.speed = speed;
     }
     update() {
+        if (this.x <= 200) {
+
+        }
         this.x -= this.speed;
     }
     draw () {
@@ -233,8 +236,7 @@ function startGame () {
     //this function handles the attacks and the collision
     setTimeout(() => {
         generateObstacles();
-        console.log(obstacleArray)
-    }, 0);
+    }, 1000);
 }
 
 
@@ -293,34 +295,35 @@ function movePokemon () {
 }
 //gives a random value, can do to 100 to work in percentages
 function randomValue () {
-    return Math.round(Math.random() * 100);
+    return Math.round(Math.random() * 5);
+
 }
 
 //according to a random value, spawn an obstacle Pokémon
 function generateObstacles () {
     //TODO: expand math random and add other Pokémon Obstacles
-    if (randomValue() <= 30) {
+    console.log(obstacleArray)
+    if (randomValue() === 0) {
         obstacleArray.push(new ObstaclePokemon("Zigzagoon" ,zigzagoonImage, normal, 136, 100, 1));
     }
-    if (randomValue() > 30 && randomValue() <60){
+    if (randomValue() === 1){
         obstacleArray.push(new ObstaclePokemon("Ivysaur", ivysaurImage, grass, 153, 150, 2))
     }
-    if (randomValue() >60 && randomValue() <90) {
+    if (randomValue() === 2) {
         obstacleArray.push(new ObstaclePokemon("Squirtle" ,squirtleImage, water, 97, 100, 2));
     }
     //TODO add more Pokémon, once more have been added, update Charizard spawn rate
-    if (randomValue() >100) {
-        obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 4));
+    if (randomValue() === 3) {
+        obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 2));
     }
-    //stops generating obstacles when user has lost
     if (hasUserLost === false) {
         setTimeout(generateObstacles, obstacleInterval);
     }
+    // stops generating obstacles when user has lost
     else if (hasUserLost === true) {
         obstacleArray = [];
         return
     }
-    console.log(obstacleArray)
 }
 
 //variables needed for attack delay
@@ -349,7 +352,7 @@ function animateObstacles () {
         obstacle.draw();
         obstacle.update();
         //removes items from array when they leave screen
-        if ((obstacleArray.x + obstacleArray.width) <=0) {
+        if ((obstacleArray[index].x + obstacleArray[index].width) <=0) {
             setTimeout(() => {
                 obstacleArray.splice(index, 1);
             }, 0)
