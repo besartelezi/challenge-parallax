@@ -189,13 +189,6 @@ let obstacleArray = [];
 //array of Pokémon attacks
 const pokemonAttacksArray = [];
 
-window.addEventListener('keydown', (e) => {
-    keys[e.key] = true;
-})
-window.addEventListener('keyup', (e) => {
-    delete keys[e.key];
-})
-
 function animateGame () {
     if (hasUserLost === false) {
         //clears prior drawing on the canvas
@@ -219,31 +212,18 @@ function animateGame () {
     }
 }
 
-//TODO: Create a button, and on button click, that button gets deleted
-let startButton = document.createElement("button");
-startButton.setAttribute("id", "startButton");
-startButton.textContent = "Start Game!";
-document.body.appendChild(startButton);
-
-startButton.onclick = () => {
-    startGame();
-    startButton.remove();
-}
-
-function startGame () {
-    animateGame();
-    //this function handles the attacks and the collision
-    setTimeout(() => {
-        generateObstacles();
-    }, 100);
-}
-
+window.addEventListener('keydown', (e) => {
+    keys[e.key] = true;
+})
+window.addEventListener('keyup', (e) => {
+    delete keys[e.key];
+})
 
 //moving the user's Pokémon
 function movePokemon () {
     //added '&&' so the users pokemon can't leave the screen
     if (keys["ArrowUp"] && currentPokemon.y > 0) {
-        //created this if statement, so that all the x and the y will stay the same
+        //created this if statement, so that all the x and y values of all Pokémon will stay the same
         if (currentPokemon === torchic) {
             currentPokemon.y -= currentPokemon.speed;
             treecko.y -= treecko.speed;
@@ -277,8 +257,6 @@ function movePokemon () {
             treecko.y += treecko.speed;
         }
     }
-
-    //TODO: find spacebar key
     if (keys[" "]) {
         shootAttack();
     }
@@ -293,9 +271,77 @@ function movePokemon () {
     }
 }
 
-let randomNumber;
+//variables needed for attack delay
+//TODO: set AttackDelay as a property for every other Pokémon, so every Pokémon has different Attack Speed
+let attackDelay = 500;
+let lastClick = 0;
+
+//checks what Pokémon the user has currently selected, and adds that types attack to the array
+function shootAttack () {
+    if (lastClick >= (Date.now() - attackDelay))
+        return;
+    lastClick = Date.now();
+    if (currentPokemon.type === fire) {
+        pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
+    }
+    if (currentPokemon.type === water) {
+        pokemonAttacksArray.push(new pokemonAttack(waterAttackImage, water, 28, 31, 5));
+    }
+    if (currentPokemon.type === grass) {
+        pokemonAttacksArray.push(new pokemonAttack(grassAttackImage, grass, 28, 31, 5));
+    }
+}
+
+function animateAttack () {
+    //removes attacks from array when they leave screen
+    pokemonAttacksArray.forEach((attack, index) => {
+        attack.draw();
+        attack.update();
+        if ((attack.x + attack.width) >=1000) {
+            setTimeout(() => {
+                pokemonAttacksArray.splice(index, 1);
+            }, 0)
+        }
+        //checks for collision between attack and obstacle
+        obstacleArray.forEach((obstacle, obstacleIndex) => {
+            if (attack.x < obstacle.x + obstacle.width &&
+                attack.x + attack.width > obstacle.x &&
+                attack.y < obstacle.y + obstacle.height &&
+                attack.y + attack.height > obstacle.y) {
+                //checks if type advantage of attack is present
+                if (attack.type === fire && obstacle.type === grass ||
+                    attack.type === water && obstacle.type === fire ||
+                    attack.type === grass && obstacle.type === water
+                ) {
+                    //if attack is effective against obstacle type, remove obstacle and attack
+                    setTimeout(() => {
+                        obstacleArray.splice(obstacleIndex, 1);
+                        pokemonAttacksArray.splice(index, 1);
+                    }, 0)
+                    //adding point to pokemon type
+                    if (attack.type === fire) {
+                        firePoints++;
+                    }
+                    if (attack.type === water) {
+                        waterPoints++;
+                    }
+                    if (attack.type === grass) {
+                        grassPoints++;
+                    }
+                }
+                else {
+                    setTimeout(() => {
+                        //if attack isn't effective against enemy obstacle type, remove attack
+                        pokemonAttacksArray.splice(index, 1);
+                    }, 0)
+                }
+            }});
+    });
+}
+
 
 //gives a random value, can do to 100 to work in percentages
+let randomNumber;
 function randomValue () {
     randomNumber = Math.round(Math.random() * 5);
 }
@@ -329,27 +375,6 @@ function generateObstacles () {
     }
 }
 
-//variables needed for attack delay
-//TODO: set AttackDelay as a property for every other Pokémon, so every Pokémon has different Attack Speed
-let attackDelay = 500;
-let lastClick = 0;
-
-//checks what Pokémon the user has currently selected, and adds that types attack to the array
-function shootAttack () {
-    if (lastClick >= (Date.now() - attackDelay))
-        return;
-    lastClick = Date.now();
-    if (currentPokemon.type === fire) {
-        pokemonAttacksArray.push(new pokemonAttack(fireAttackImage, fire, 28, 31, 5));
-    }
-    if (currentPokemon.type === water) {
-        pokemonAttacksArray.push(new pokemonAttack(waterAttackImage, water, 28, 31, 5));
-    }
-    if (currentPokemon.type === grass) {
-        pokemonAttacksArray.push(new pokemonAttack(grassAttackImage, grass, 28, 31, 5));
-    }
-}
-
 function animateObstacles () {
     obstacleArray.forEach((obstacle, index) => {
         obstacle.draw();
@@ -372,74 +397,55 @@ function animateObstacles () {
     });
 }
 
+//TODO: Create a button, and on button click, that button gets deleted
+let startButton = document.createElement("button");
+startButton.setAttribute("id", "startButton");
+startButton.textContent = "Start Game!";
+document.body.appendChild(startButton);
+
+startButton.onclick = () => {
+    startGame();
+    startButton.remove();
+}
+
+function startGame () {
+    animateGame();
+    //this function handles the attacks and the collision
+    setTimeout(() => {
+        generateObstacles();
+    }, 100);
+}
+
 function handleLoss () {
     hasUserLost = true;
-    obstacleArray = [];
+    //creates 'Play Again!' button on screen
     let restartButton = document.createElement("button");
     restartButton.setAttribute("id", "restartButton");
     restartButton.textContent = "Play Again!";
     document.body.appendChild(restartButton);
 
     restartButton.onclick = () => {
+        //clears canvas
         const context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
+        //sets all values back to standard
+        grassPoints = 0;
+        firePoints = 0;
+        waterPoints = 0;
         obstacleArray = [];
-        currentX = 15;
-        currentY = 250;
         hasUserLost = false;
+
+        //sets Pokémon back where it started
+        //commented it out for now, since having the Pokémon have the same position as before makes it feel more alive
+        // treecko.x = 15;
+        // mudkip.x = 15;
+        // torchic.x = 15;
+        // treecko.y = 250;
+        // mudkip.y = 250;
+        // torchic.y = 250;
+
+        //starts game and removes play again button
         startGame();
         restartButton.remove();
     }
-}
-
-function animateAttack () {
-    //removes attacks from array when they leave screen
-    pokemonAttacksArray.forEach((attack, index) => {
-        attack.draw();
-        attack.update();
-        if ((attack.x + attack.width) >=1000) {
-            setTimeout(() => {
-                pokemonAttacksArray.splice(index, 1);
-            }, 0)
-        }
-        //checks for collision between attack and obstacle
-        obstacleArray.forEach((obstacle, obstacleIndex) => {
-        if (attack.x < obstacle.x + obstacle.width &&
-            attack.x + attack.width > obstacle.x &&
-            attack.y < obstacle.y + obstacle.height &&
-            attack.y + attack.height > obstacle.y) {
-            //checks if type advantage of attack is present
-            if (attack.type === fire && obstacle.type === grass ||
-                attack.type === water && obstacle.type === fire ||
-                attack.type === grass && obstacle.type === water
-            ) {
-                //if attack is effective against obstacle type, remove obstacle and attack
-                setTimeout(() => {
-                    obstacleArray.splice(obstacleIndex, 1);
-                    pokemonAttacksArray.splice(index, 1);
-                }, 0)
-                //adding point to pokemon type
-                if (attack.type === fire) {
-                    firePoints++;
-                    console.log(firePoints)
-                }
-                if (attack.type === water) {
-                    waterPoints++;
-                    console.log(waterPoints)
-
-                }
-                if (attack.type === grass) {
-                    grassPoints++;
-                    console.log(grassPoints)
-
-                }
-            }
-            else {
-                setTimeout(() => {
-                    //if attack isn't effective against enemy obstacle type, remove attack
-                    pokemonAttacksArray.splice(index, 1);
-                }, 0)
-            }
-        }});
-    });
 }
