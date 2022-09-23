@@ -94,7 +94,6 @@ And that's precisely what I will be aiming for.
   - [x] When pokemon defeats obstacle Pokémon, their respective type points grows
   - [ ] Add visual of total type points
 - [ ] Edit layout game
-  - [ ] 
 - [ ] Add more different Pokémon
 ## Extra's when finished
 - [ ] Add animations to user Pokémon
@@ -216,4 +215,5 @@ I might not follow the design 100% though, since things can always change.
 ## Concluding this Conclusion, Constant Control in the Corner
 In short, I'm very damn proud of myself for the way I tackled this assignment and because of the result I achieved.
 There are still some features I'd like to add, some bugs that might need a fixer-upper.
+
 
