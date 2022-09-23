@@ -333,14 +333,14 @@ function animateAttack () {
                     if (attack.type === water) {
                         waterPoints++;
                         totalPoints++;
-                        showUserGrassPoints.innerHTML = waterPoints;
+                        showUserWaterPoints.innerHTML = waterPoints;
                         showUserTotalPoints.innerHTML = totalPoints;
 
                     }
                     if (attack.type === grass) {
                         grassPoints++;
                         totalPoints++;
-                        showUserWaterPoints.innerHTML = grassPoints;
+                        showUserGrassPoints.innerHTML = grassPoints;
                         showUserTotalPoints.innerHTML = totalPoints;
 
                     }
