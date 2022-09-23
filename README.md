@@ -94,7 +94,16 @@ And that's precisely what I will be aiming for.
   - [x] When pokemon defeats obstacle Pokémon, their respective type points grows
   - [ ] Add visual of total type points
 - [ ] Edit layout game
-- [ ] Add more different Pokémon
+- [ ] Add more Obstacle Pokémon
+  - [ ] I'd like to have all 3 evolution stages of the Kanto starters
+  - [ ]Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
+- [ ]Add evolutions
+  - [ ] Once the user has 25/50 points on their Pokémon, that Pokémon will evolve.
+  - [ ] When they have 100 points, they will evolve once more
+- [ ] Have shiny Pokémon
+  - [ ] Give the Pokémon a shinyChance property, and depending on that property, they might spawn as a shiny Pokémon.
+  - [ ] Both the Obstacle Pokémon, as well as the player's Pokémon, will have a shinyChance property
+
 ## Extra's when finished
 - [ ] Add animations to user Pokémon
   - https://pokemondb.net/sprites/mudkip
@@ -203,7 +212,7 @@ I wanted to create another class, called the Trainer class, and have it's x and 
 But I couldn't find a way to make it work, so I though this might work.
 In the end it did, so I'm glad I was able to resolve the issue, but I would've liked to have found a better solution to this problem.
 
-## Layout, not laying eggs
+## Layout, not laying eggs (looking at you Pokémon Daycare!)
 Once I'm done with the most key features of the game, I will be able to shift my focus to the layout of the site.
 The background colour will remain this shade of green, since it reminds me the most of the game Pokémon Emerald, the game that inspired me to create my own game.
 
@@ -231,4 +240,23 @@ The code may be a bit chaotic, but not so chaotic that I lost too much time on i
 
 ## New Goals
 The first goal has been cleared already, and that was fixing all the bugs and adding a start and play again button.
-With that out of the way, I can start working on the next 
+With that out of the way, I can start working on the next!
+The next goal is to have a proper UI for the site.
+Once that's done, I will have a proper MVP for this project.
+And when the MVP is finished and I find myself wanting to work on this project again, then I already have some tasks I can work on.
+
+The next goals are:
+* To add more Obstacle Pokémon
+  * I'd like to have all 3 evolution stages of the Kanto starters
+  * Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
+* Add evolutions
+  * Once the user has 25/50 points on their Pokémon, that Pokémon will evolve.
+  * When they have 100 points, they will evolve once more
+* Have shiny Pokémon
+  * Give the Pokémon a shinyChance property, and depending on that property, they might spawn as a shiny Pokémon.
+
+## Concluding this conclusion
+And with that, there is but one more thing I can say.
+Pokémon GO play my game!!!!!
+
+![hillary-ous-dab](resources/readme-images/hillary-clinton-dab.gif)
