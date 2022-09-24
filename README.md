@@ -89,21 +89,29 @@ And that's precisely what I will be aiming for.
 - [x] Add start game button
   - [x] Make button work, run the entire game once button has been pressed
   - [x] When user Pokémon faints, show end screen + retry button or go back to page button
-- [ ] Add Point system
+- [x] Add Point system
   - [x] Add let variables of type total points
   - [x] When pokemon defeats obstacle Pokémon, their respective type points grows
-  - [ ] Add visual of total type points
-- [ ] Edit layout game
-- [ ] Add more Obstacle Pokémon
-  - [ ] I'd like to have all 3 evolution stages of the Kanto starters
-  - [ ] Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
-- [ ] Add evolutions
-  - [ ] Once the user has 25/50 points on their Pokémon, that Pokémon will evolve.
-  - [ ] When they have 100 points, they will evolve once more
+  - [x] Add visual of total type points
+- [x] Edit layout game
+  - [x] Make buttons look better
 - [ ] Have shiny Pokémon
   - [ ] Give the Pokémon a shinyChance property, and depending on that property, they might spawn as a shiny Pokémon.
   - [ ] Both the Obstacle Pokémon, as well as the player's Pokémon, will have a shinyChance property
   - [ ] Shinies give a 10 * point boost when that specific Pokémon gets defeated
+- [ ] Add more Obstacle Pokémon
+  - [ ] I'd like to have all 3 evolution stages of the Kanto starters
+    - [ ] Wartortle
+    - [ ] Blastoise
+    - [ ] Bulbasaur
+    - [ ] Venasaur
+    - [ ] Charmander
+    - [ ] Charmeleon
+  - [ ] Add Bidoof, Snorlax and Rattata as the Normal Pokémon blockroads
+  - [ ] Maybe find a way, the bigger the Pokémon, the more the ObstacleInterval gets, balancing the game more
+- [ ] Add evolutions
+  - [ ] Once the user has 25/50 points on their Pokémon, that Pokémon will evolve.
+  - [ ] When they have 100 points, they will evolve once more
 
 ## Extra's when finished
 - [ ] Add animations to user Pokémon
