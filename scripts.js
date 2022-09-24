@@ -63,6 +63,8 @@ const normal = "normal";
 
 //the users status, if the users pokémon is hit, they lose
 let hasUserLost = false;
+//The text of the button, it changes depending on if the user has just started the game, or if they're trying again
+let buttonText = "Start Game!";
 
 //Points the user has, shown on the HTML
 let showUserFirePoints = document.getElementById("fire-points");
@@ -324,6 +326,7 @@ function animateAttack () {
                         pokemonAttacksArray.splice(index, 1);
                     }, 0)
                     //adding point to pokemon type
+                    //TODO: if the obstacle Pokémon is shiny, give a 10* multiplier to that point
                     if (attack.type === fire) {
                         firePoints++;
                         totalPoints++;
@@ -375,7 +378,7 @@ function generateObstacles () {
     if (randomNumber === 2) {
         obstacleArray.push(new ObstaclePokemon("Squirtle" ,squirtleImage, water, 97, 100, 2));
     }
-    //TODO add more Pokémon, once more have been added, update Charizard spawn rate
+    //TODO add more Pokémon, once more have been added, update spawn rate
     if (randomNumber === 3) {
         obstacleArray.push(new ObstaclePokemon("Charizard" ,charizardImage, fire, 153, 165, 2));
     }
@@ -401,7 +404,7 @@ function animateObstacles () {
             }, 0)
         }
         //detects collision between player and obstacles
-        //TODO: rework hitboxes
+        //TODO: rework hitboxes (I probably won't do this though)
         if (currentPokemon.x < obstacle.x + obstacle.width &&
             currentPokemon.x + currentPokemon.width > obstacle.x &&
             currentPokemon.y < obstacle.y + obstacle.height &&
@@ -412,17 +415,57 @@ function animateObstacles () {
     });
 }
 
-//TODO: style buttons
-let startButton = document.createElement("button");
-startButton.setAttribute("id", "startButton");
-startButton.textContent = "Start Game!";
-document.body.appendChild(startButton);
-//add styling of button
+function createStartButton () {
+    //this creates the start button
+    let startButton = document.createElement("button");
+    startButton.setAttribute("id", "startButton");
+    startButton.textContent = buttonText;
+    document.getElementById("canvas-box").appendChild(startButton);
 
-startButton.onclick = () => {
-    startGame();
-    startButton.remove();
+    //styling of start game button
+    startButton.style.backgroundColor = "#1a2c2c";
+    startButton.style.width = "200px";
+    startButton.style.height = "50px";
+    startButton.style.color = "white";
+    startButton.style.borderStyle = "solid";
+    startButton.style.borderWidth = "3px";
+    startButton.style.position = "absolute";
+    startButton.style.left = "40%";
+    startButton.style.top = "45%";
+
+    //if the user has just started playing, the button will say "start game" and it will have all default values
+    if (hasUserLost === false) {
+        startButton.onclick = () => {
+            startGame();
+            startButton.remove();
+        }
+    }
+    //if the user wants to play again, this gets called, and all values will be set back to default values
+    else {
+        startButton.onclick = () => {
+            // clears canvas
+            const context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            //sets all values back to standard
+            obstacleArray = [];
+            grassPoints = 0;
+            firePoints = 0;
+            waterPoints = 0;
+            totalPoints = 0;
+            hasUserLost = false;
+
+            showUserGrassPoints.innerHTML = grassPoints;
+            showUserWaterPoints.innerHTML = waterPoints;
+            showUserFirePoints.innerHTML = firePoints;
+            showUserTotalPoints.innerHTML = totalPoints;
+
+            startGame();
+            startButton.remove();
+        }
+    }
 }
+
+createStartButton();
 
 function startGame () {
     animateGame();
@@ -434,42 +477,7 @@ function startGame () {
 
 function handleLoss () {
     hasUserLost = true;
-    //creates 'Play Again!' button on screen
-    let restartButton = document.createElement("button");
-    restartButton.setAttribute("id", "restartButton");
-    restartButton.textContent = "Play Again!";
-    document.body.appendChild(restartButton);
-
-    restartButton.onclick = () => {
-        //clears canvas
-        const context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        //sets all values back to standard
-        grassPoints = 0;
-        firePoints = 0;
-        waterPoints = 0;
-        totalPoints = 0;
-
-        obstacleArray = [];
-        hasUserLost = false;
-
-        showUserGrassPoints.innerHTML = grassPoints;
-        showUserWaterPoints.innerHTML = waterPoints;
-        showUserFirePoints.innerHTML = firePoints;
-        showUserTotalPoints.innerHTML = totalPoints;
-
-        //sets Pokémon back where it started
-        //commented it out for now, since having the Pokémon have the same position as before makes it feel more alive
-        // treecko.x = 15;
-        // mudkip.x = 15;
-        // torchic.x = 15;
-        // treecko.y = 250;
-        // mudkip.y = 250;
-        // torchic.y = 250;
-
-        //starts game and removes play again button
-        startGame();
-        restartButton.remove();
-    }
+    buttonText = "Play Again!";
+    createStartButton();
 }
 
