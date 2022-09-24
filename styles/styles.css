@@ -42,12 +42,19 @@ body {
     width: 960px;
     height: 600px;
     margin: 10px;
+    background-color: #64adad;
 }
+
 .game-guide {
     width: 20%;
     padding: 1%;
 }
+
 .controls {
     width: 10%;
     padding: 1%;
+}
+
+.canvas-box {
+    position: relative;
 }
