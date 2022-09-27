@@ -4,6 +4,12 @@ body {
     font-family: sans-serif;
 }
 
+@media only screen and (max-width: 1700px) {
+    body{
+        font-size: 12px;
+    }
+    }
+
 .point-container {
     display: flex;
     align-content: center;
